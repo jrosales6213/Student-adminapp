@@ -17,6 +17,9 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CChart,
+  CListGroup,
+  CListGroupItem,
 } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
@@ -186,11 +189,11 @@ const Dashboard = () => {
           <CRow>
             <CCol sm={5}>
               <h4 id="traffic" className="card-title mb-0">
-                Traffic
+                Budget Spent
               </h4>
-              <div className="small text-medium-emphasis">January - July 2021</div>
+              <div className="small text-medium-emphasis">2021-2022 School Year</div>
             </CCol>
-            <CCol sm={7} className="d-none d-md-block">
+            {/* <CCol sm={7} className="d-none d-md-block">
               <CButton color="primary" className="float-end">
                 <CIcon icon={cilCloudDownload} />
               </CButton>
@@ -206,9 +209,45 @@ const Dashboard = () => {
                   </CButton>
                 ))}
               </CButtonGroup>
-            </CCol>
+            </CCol> */}
           </CRow>
           <CChartLine
+            data={{
+              labels: [
+                'Aug',
+                'Sept',
+                'Oct',
+                'Nov',
+                'Dec',
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+              ],
+              datasets: [
+                // {
+                //   label: 'My First dataset',
+                //   backgroundColor: 'rgba(220, 220, 220, 0.2)',
+                //   borderColor: 'rgba(220, 220, 220, 1)',
+                //   pointBackgroundColor: 'rgba(220, 220, 220, 1)',
+                //   pointBorderColor: '#fff',
+                //   data: [, random(), random(), random(), random(), random(), random()],
+                // },
+                {
+                  label: 'Amount Spent',
+                  backgroundColor: 'rgba(151, 187, 205, 0.2)',
+                  borderColor: 'rgba(151, 187, 205, 1)',
+                  pointBackgroundColor: 'rgba(151, 187, 205, 1)',
+                  pointBorderColor: '#fff',
+                  data: [768, 675, 543, 786, 700, 456, 345, 876, 1000, 2000, 876],
+                },
+              ],
+            }}
+          />
+          {/* <CChartLine
             style={{ height: '300px', marginTop: '40px' }}
             data={{
               labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -291,9 +330,9 @@ const Dashboard = () => {
                 },
               },
             }}
-          />
+          /> */}
         </CCardBody>
-        <CCardFooter>
+        {/* <CCardFooter>
           <CRow xs={{ cols: 1 }} md={{ cols: 5 }} className="text-center">
             {progressExample.map((item, index) => (
               <CCol className="mb-sm-2 mb-0" key={index}>
@@ -305,151 +344,80 @@ const Dashboard = () => {
               </CCol>
             ))}
           </CRow>
-        </CCardFooter>
+        </CCardFooter> */}
       </CCard>
 
-      <WidgetsBrand withCharts />
+      {/* <WidgetsBrand withCharts /> */}
 
       <CRow>
-        <CCol xs>
+        <CCol sm={6}>
           <CCard className="mb-4">
-            <CCardHeader>Traffic {' & '} Sales</CCardHeader>
+            <CCardHeader>Events</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol xs={12} md={6} xl={6}>
-                  <CRow>
-                    <CCol sm={6}>
-                      <div className="border-start border-start-4 border-start-info py-1 px-3">
-                        <div className="text-medium-emphasis small">New Clients</div>
-                        <div className="fs-5 fw-semibold">9,123</div>
-                      </div>
-                    </CCol>
-                    <CCol sm={6}>
-                      <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Recurring Clients</div>
-                        <div className="fs-5 fw-semibold">22,643</div>
-                      </div>
-                    </CCol>
-                  </CRow>
-
-                  <hr className="mt-0" />
-                  {progressGroupExample1.map((item, index) => (
-                    <div className="progress-group mb-4" key={index}>
-                      <div className="progress-group-prepend">
-                        <span className="text-medium-emphasis small">{item.title}</span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <CProgress thin color="info" value={item.value1} />
-                        <CProgress thin color="danger" value={item.value2} />
-                      </div>
-                    </div>
-                  ))}
-                </CCol>
-
-                <CCol xs={12} md={6} xl={6}>
-                  <CRow>
-                    <CCol sm={6}>
-                      <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Pageviews</div>
-                        <div className="fs-5 fw-semibold">78,623</div>
-                      </div>
-                    </CCol>
-                    <CCol sm={6}>
-                      <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Organic</div>
-                        <div className="fs-5 fw-semibold">49,123</div>
-                      </div>
-                    </CCol>
-                  </CRow>
-
-                  <hr className="mt-0" />
-
-                  {progressGroupExample2.map((item, index) => (
-                    <div className="progress-group mb-4" key={index}>
-                      <div className="progress-group-header">
-                        <CIcon className="me-2" icon={item.icon} size="lg" />
-                        <span>{item.title}</span>
-                        <span className="ms-auto fw-semibold">{item.value}%</span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <CProgress thin color="warning" value={item.value} />
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="mb-5"></div>
-
-                  {progressGroupExample3.map((item, index) => (
-                    <div className="progress-group" key={index}>
-                      <div className="progress-group-header">
-                        <CIcon className="me-2" icon={item.icon} size="lg" />
-                        <span>{item.title}</span>
-                        <span className="ms-auto fw-semibold">
-                          {item.value}{' '}
-                          <span className="text-medium-emphasis small">({item.percent}%)</span>
-                        </span>
-                      </div>
-                      <div className="progress-group-bars">
-                        <CProgress thin color="success" value={item.percent} />
-                      </div>
-                    </div>
-                  ))}
-                </CCol>
-              </CRow>
-
-              <br />
-
-              <CTable align="middle" className="mb-0 border" hover responsive>
-                <CTableHead color="light">
-                  <CTableRow>
-                    <CTableHeaderCell className="text-center">
-                      <CIcon icon={cilPeople} />
-                    </CTableHeaderCell>
-                    <CTableHeaderCell>User</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
-                    <CTableHeaderCell>Usage</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell>
-                    <CTableHeaderCell>Activity</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  {tableExample.map((item, index) => (
-                    <CTableRow v-for="item in tableItems" key={index}>
-                      <CTableDataCell className="text-center">
-                        <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div>{item.user.name}</div>
-                        <div className="small text-medium-emphasis">
-                          <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
-                          {item.user.registered}
-                        </div>
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="clearfix">
-                          <div className="float-start">
-                            <strong>{item.usage.value}%</strong>
-                          </div>
-                          <div className="float-end">
-                            <small className="text-medium-emphasis">{item.usage.period}</small>
-                          </div>
-                        </div>
-                        <CProgress thin color={item.usage.color} value={item.usage.value} />
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="small text-medium-emphasis">Last login</div>
-                        <strong>{item.activity}</strong>
-                      </CTableDataCell>
+                <CTable align="middle" className="mb-0 border" hover responsive>
+                  {/* <CTableHead color="light">
+                    <CTableRow>
+                      <CTableHeaderCell className="text-center">
+                        <CIcon icon={cilPeople} />
+                      </CTableHeaderCell>
+                      <CTableHeaderCell>User</CTableHeaderCell>
+                      <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
+                      <CTableHeaderCell>Usage</CTableHeaderCell>
+                      <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell>
+                      <CTableHeaderCell>Activity</CTableHeaderCell>
                     </CTableRow>
-                  ))}
-                </CTableBody>
-              </CTable>
+                  </CTableHead> */}
+
+                  <CTableBody>
+                    <CTableRow>
+                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
+                      <CTableHeaderCell>Target Outing</CTableHeaderCell>
+                    </CTableRow>
+                    <CTableRow>
+                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
+                      <CTableHeaderCell>Speaker coming to school</CTableHeaderCell>
+                    </CTableRow>
+                    <CTableRow>
+                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
+                      <CTableHeaderCell>Baseball game outing</CTableHeaderCell>
+                    </CTableRow>
+                    <CTableRow>
+                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
+                      <CTableHeaderCell>No School </CTableHeaderCell>
+                    </CTableRow>
+                  </CTableBody>
+                </CTable>
+              </CRow>
+            </CCardBody>
+          </CCard>
+        </CCol>
+        <CCol sm={6}>
+          <CCard>
+            <CCardHeader className="success">Tasks</CCardHeader>
+            <CCardBody>
+              <CRow>
+                <CTable align="middle" className="mb-0 border" hover responsive>
+                  <CTableBody>
+                    <CTableRow>
+                      <CTableHeaderCell>3-2-2022</CTableHeaderCell>
+                      <CTableHeaderCell>Call parents for meeting</CTableHeaderCell>
+                    </CTableRow>
+                    <CTableRow>
+                      <CTableHeaderCell>4-15-2022</CTableHeaderCell>
+                      <CTableHeaderCell>Timesheets are due</CTableHeaderCell>
+                    </CTableRow>
+                    <CTableRow>
+                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
+                      <CTableHeaderCell>Send email to coach</CTableHeaderCell>
+                    </CTableRow>
+                    <CTableRow>
+                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
+                      <CTableHeaderCell>Purchase materials for garden</CTableHeaderCell>
+                    </CTableRow>
+                  </CTableBody>
+                </CTable>
+              </CRow>
             </CCardBody>
           </CCard>
         </CCol>
