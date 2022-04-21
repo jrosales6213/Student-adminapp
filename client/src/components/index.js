@@ -7,6 +7,8 @@ import AppSidebar from './AppSidebar'
 import DocsCallout from './DocsCallout'
 import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
+import StudentForm from './StudentForm'
+import PartnerForm from './PartnersForm'
 
 export {
   AppBreadcrumb,
@@ -18,4 +20,6 @@ export {
   DocsCallout,
   DocsLink,
   DocsExample,
+  StudentForm,
+  PartnerForm,
 }
