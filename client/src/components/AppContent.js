@@ -1,16 +1,27 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
+import { useDispatch } from 'react-redux'
+import { getPosts } from '../redux/actions/posts'
+
+import StudentForm from './StudentForm.js'
 
 // routes config
-import routes from '../routes'
+// import routes from '../routes'
 
 const AppContent = () => {
+  const [currentId, setCurrentId] = useState(0)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getPosts())
+  }, [currentId, dispatch])
+
   return (
     <CContainer lg>
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
-          {routes.map((route, idx) => {
+          {/* {routes.map((route, idx) => {
             return (
               route.element && (
                 <Route
@@ -22,12 +33,18 @@ const AppContent = () => {
                 />
               )
             )
-          })}
+          })} */}
           <Route path="/" element={<Navigate to="dashboard" replace />} />
+          <Route
+            path="/students"
+            element={<StudentForm currentId={currentId} setCurrentId={setCurrentId} />}
+          />
         </Routes>
       </Suspense>
     </CContainer>
   )
 }
 
-export default React.memo(AppContent)
+export default AppContent
+
+// export default React.memo(AppContent)

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   CCard,
   CCardBody,
@@ -14,9 +15,33 @@ import {
 } from '@coreui/react'
 
 import CIcon from '@coreui/icons-react'
-import { cilPencil, cilDelete, cilNotes, cilCut } from '@coreui/icons'
+import { cilPencil, cilDelete, cilNotes } from '@coreui/icons'
+import { useSelector } from 'react-redux'
 
+const StudentRow = ({ posts }) => {
+  return (
+    <CTableRow>
+      <CTableHeaderCell scope="row">{posts.firstname}</CTableHeaderCell>
+
+      <CTableDataCell>{posts.lastname}</CTableDataCell>
+      <CTableDataCell>{posts.mobile}</CTableDataCell>
+
+      <CTableDataCell className="d-flex justify-content-center">
+        <CCol>
+          <CIcon icon={cilPencil} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
+        </CCol>
+        <CCol>
+          <CIcon icon={cilDelete} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
+        </CCol>
+        <CCol>
+          <CIcon icon={cilNotes} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
+        </CCol>
+      </CTableDataCell>
+    </CTableRow>
+  )
+}
 const StudentTable = () => {
+  const posts = useSelector((state) => state.posts)
   return (
     <CRow>
       <CCol>
@@ -37,9 +62,10 @@ const StudentTable = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">Jesus Javier</CTableHeaderCell>
-                    <CTableDataCell>Rosales-Pena</CTableDataCell>
+                  <StudentRow posts={posts} />
+                  {/* <CTableRow>
+                    <CTableHeaderCell scope="row">{posts.firstname}</CTableHeaderCell>
+                    <CTableDataCell>{posts.lastname}</CTableDataCell>
                     <CTableDataCell>143543</CTableDataCell>
                     <CTableDataCell className="d-flex justify-content-center">
                       <CCol>
@@ -52,55 +78,7 @@ const StudentTable = () => {
                         <CIcon icon={cilNotes} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
                       </CCol>
                     </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">Jesus Javier</CTableHeaderCell>
-                    <CTableDataCell>Rosales-Pena</CTableDataCell>
-                    <CTableDataCell>143543</CTableDataCell>
-                    <CTableDataCell className="d-flex justify-content-center">
-                      <CCol>
-                        <CIcon icon={cilPencil} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                      <CCol>
-                        <CIcon icon={cilDelete} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                      <CCol>
-                        <CIcon icon={cilNotes} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">Jesus Javier</CTableHeaderCell>
-                    <CTableDataCell>Rosales-Pena</CTableDataCell>
-                    <CTableDataCell>143543</CTableDataCell>
-                    <CTableDataCell className="d-flex justify-content-center">
-                      <CCol>
-                        <CIcon icon={cilPencil} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                      <CCol>
-                        <CIcon icon={cilDelete} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                      <CCol>
-                        <CIcon icon={cilNotes} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">Jesus Javier</CTableHeaderCell>
-                    <CTableDataCell>Rosales-Pena</CTableDataCell>
-                    <CTableDataCell>143543</CTableDataCell>
-                    <CTableDataCell className="d-flex justify-content-center">
-                      <CCol>
-                        <CIcon icon={cilPencil} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                      <CCol>
-                        <CIcon icon={cilDelete} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                      <CCol>
-                        <CIcon icon={cilNotes} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-                      </CCol>
-                    </CTableDataCell>
-                  </CTableRow>
+                  </CTableRow> */}
 
                   {/* <CTableRow color="primary">
                     <CTableHeaderCell scope="row">Primary</CTableHeaderCell>
@@ -154,3 +132,11 @@ const StudentTable = () => {
 }
 
 export default StudentTable
+
+StudentTable.propTypes = {
+  setCurrentId: PropTypes.number,
+  firstname: PropTypes.string,
+  lastname: PropTypes.string,
+  mobile: PropTypes.string,
+  posts: PropTypes.object,
+}

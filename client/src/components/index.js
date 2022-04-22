@@ -7,7 +7,7 @@ import AppSidebar from './AppSidebar'
 import DocsCallout from './DocsCallout'
 import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
-import StudentForm from './StudentForm'
+// import StudentForm from './StudentForm'
 import PartnerForm from './PartnersForm'
 
 export {
@@ -20,6 +20,6 @@ export {
   DocsCallout,
   DocsLink,
   DocsExample,
-  StudentForm,
+  // StudentForm,
   PartnerForm,
 }
