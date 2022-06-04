@@ -13,29 +13,51 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+import './StudentTable.css'
 
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilDelete, cilNotes } from '@coreui/icons'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { updatePost } from '../redux/actions/posts'
 
-function StudentRow({ post }) {
-  const handleclick = () => {
-    console.log('you clikced a button')
-  }
+function StudentRow({ post, currentId, setCurrentId, postData, setPostData }) {
+  console.log(post)
+  const dispatch = useDispatch()
+
+  // const handleEdit = () => {
+  //   // dispatch(updatePost(currentId, setPostData))
+  //   console.log(post._id)
+  // }
+  // const editForm = () => {
+
+  //   setPostData({
+  //     firstname: ,
+  //     lastname: ,
+  //     studentId: '',
+  //     address: '',
+  //     city: '',
+  //     state: '',
+  //     mobile: '',
+  //     email: '',
+  //     // jobsite: '',
+  //   })
+  // }
   return (
     <>
       {post.map((item) => (
         <CTableRow key={item._id}>
           <CTableHeaderCell>{item.firstname}</CTableHeaderCell>
           <CTableDataCell>{item.lastname}</CTableDataCell>
-          <CTableDataCell>{item.mobile}</CTableDataCell>
+          <CTableDataCell>{item.studentID}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">
             <CCol>
               <CIcon
                 icon={cilPencil}
                 size={'lg'}
-                className="me-2 pr-3 pl-3s"
-                onClick={handleclick}
+                className="edit-button"
+                // onClick={() => console.log(item._id)}
+                // onClick={() => setCurrentId(item._id)}
+                onClick={() => scrollIntoView(alignToTop)}
               ></CIcon>
             </CCol>
             <CCol>
@@ -51,7 +73,7 @@ function StudentRow({ post }) {
   )
 }
 
-const StudentTable = () => {
+const StudentTable = ({ currentId, setCurrentId, postData, setPostData }) => {
   const posts = useSelector((state) => state.posts)
   return (
     <CRow>
@@ -72,7 +94,13 @@ const StudentTable = () => {
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <StudentRow post={posts} />
+                  <StudentRow
+                    post={posts}
+                    currentId={currentId}
+                    setCurrentId={setCurrentId}
+                    postData={postData}
+                    setPostData={setPostData}
+                  />
                 </CTableBody>
               </CTable>
             </CCardBody>
@@ -87,7 +115,14 @@ export default StudentTable
 
 StudentTable.propTypes = {
   setCurrentId: PropTypes.number,
+  currentId: PropTypes.number,
+  postData: PropTypes.object,
+  setPostData: PropTypes.object,
 }
 StudentRow.propTypes = {
   post: PropTypes.object,
+  currentId: PropTypes.number,
+  setCurrentId: PropTypes.number,
+  postData: PropTypes.object,
+  setPostData: PropTypes.object,
 }

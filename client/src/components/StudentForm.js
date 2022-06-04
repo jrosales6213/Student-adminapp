@@ -20,7 +20,7 @@ const StudentForm = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     firstname: PropTypes.string,
     lastname: PropTypes.string,
-    studentId: PropTypes.number,
+    studentID: PropTypes.number,
     address: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
@@ -28,7 +28,7 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     email: PropTypes.string,
     // jobsite: PropTypes.object,
   })
-  const [checked, setChecked] = useState([])
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((message) => message._id === currentId) : null,
   )
@@ -43,7 +43,7 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     setPostData({
       firstname: '',
       lastname: '',
-      studentId: '',
+      studentID: '',
       address: '',
       city: '',
       state: '',
@@ -62,6 +62,7 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     } else {
       dispatch(updatePost(currentId, postData))
       clear()
+      console.log('CurrentId already exists')
     }
   }
 
@@ -97,8 +98,8 @@ const StudentForm = ({ currentId, setCurrentId }) => {
               <CFormInput
                 type="text"
                 id="studentID"
-                value={postData.studentId}
-                onChange={(e) => setPostData({ ...postData, studentId: e.target.value })}
+                value={postData.studentID}
+                onChange={(e) => setPostData({ ...postData, studentID: e.target.value })}
                 required
               />
               <CFormFeedback valid>Looks good!</CFormFeedback>
@@ -226,7 +227,12 @@ const StudentForm = ({ currentId, setCurrentId }) => {
       </CRow>
       <CRow>
         <CCol>
-          <StudentTable setCurrentId={setCurrentId} />
+          <StudentTable
+            setCurrentId={setCurrentId}
+            currentId={currentId}
+            postData={postData}
+            setPostData={setPostData}
+          />
         </CCol>
       </CRow>
     </>

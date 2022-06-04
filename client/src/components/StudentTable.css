@@ -1,0 +1,7 @@
+.edit-button {
+  color: rgb(14, 21, 45);
+}
+.edit-button:hover {
+  transform: scale(1.2);
+  color: rgb(40, 55, 142);
+}
