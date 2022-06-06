@@ -10,7 +10,7 @@ const studentSchema = new Schema ({
     state: String,
     mobile: Number,
     email: String,
-    jobsite: [String],
+    jobsite: String,
     createdAt: {
        type: Date,
        default: new Date(),
