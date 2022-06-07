@@ -20,28 +20,18 @@ import { cilPencil, cilDelete, cilNotes } from '@coreui/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { updatePost } from '../redux/actions/posts'
 
-function StudentRow({ post, currentId, setCurrentId, postData, setPostData }) {
+function StudentRow({ post, currentId, setCurrentId, postData, setPostData, setVisible, visible }) {
   console.log(post)
   const dispatch = useDispatch()
 
   // const handleEdit = () => {
-  //   // dispatch(updatePost(currentId, setPostData))
-  //   console.log(post._id)
+  //   setVisible(!visible)
   // }
-  // const editForm = () => {
+  function handleEdit(item) {
+    setVisible(!visible)
+    setCurrentId(item)
+  }
 
-  //   setPostData({
-  //     firstname: ,
-  //     lastname: ,
-  //     studentId: '',
-  //     address: '',
-  //     city: '',
-  //     state: '',
-  //     mobile: '',
-  //     email: '',
-  //     // jobsite: '',
-  //   })
-  // }
   return (
     <>
       {post.map((item) => (
@@ -55,9 +45,7 @@ function StudentRow({ post, currentId, setCurrentId, postData, setPostData }) {
                 icon={cilPencil}
                 size={'lg'}
                 className="edit-button"
-                // onClick={() => console.log(item._id)}
-                // onClick={() => setCurrentId(item._id)}
-                onClick={() => scrollIntoView(alignToTop)}
+                onClick={() => handleEdit(item._id)}
               ></CIcon>
             </CCol>
             <CCol>
@@ -73,7 +61,7 @@ function StudentRow({ post, currentId, setCurrentId, postData, setPostData }) {
   )
 }
 
-const StudentTable = ({ currentId, setCurrentId, postData, setPostData }) => {
+const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisible, visible }) => {
   const posts = useSelector((state) => state.posts)
   return (
     <CRow>
@@ -100,6 +88,8 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData }) => {
                     setCurrentId={setCurrentId}
                     postData={postData}
                     setPostData={setPostData}
+                    setVisible={setVisible}
+                    visible={visible}
                   />
                 </CTableBody>
               </CTable>
@@ -118,6 +108,8 @@ StudentTable.propTypes = {
   currentId: PropTypes.number,
   postData: PropTypes.object,
   setPostData: PropTypes.object,
+  setVisible: PropTypes.bool,
+  visible: PropTypes.bool,
 }
 StudentRow.propTypes = {
   post: PropTypes.object,
@@ -125,4 +117,6 @@ StudentRow.propTypes = {
   setCurrentId: PropTypes.number,
   postData: PropTypes.object,
   setPostData: PropTypes.object,
+  setVisible: PropTypes.bool,
+  visible: PropTypes.bool,
 }
