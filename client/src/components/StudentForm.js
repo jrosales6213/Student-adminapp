@@ -95,7 +95,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
                     onChange={(e) => setPostData({ ...postData, firstname: e.target.value })}
                     required
                   />
-                  <CFormFeedback valid>Looks good!</CFormFeedback>
                 </CCol>
                 <CCol md={12}>
                   <CFormLabel htmlFor="lastName">Last Name</CFormLabel>
@@ -106,7 +105,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
                     onChange={(e) => setPostData({ ...postData, lastname: e.target.value })}
                     required
                   />
-                  <CFormFeedback valid>Looks good!</CFormFeedback>
                 </CCol>
                 <CCol md={12}>
                   <CFormLabel htmlFor="studentID">Student ID</CFormLabel>
@@ -117,7 +115,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
                     onChange={(e) => setPostData({ ...postData, studentID: e.target.value })}
                     required
                   />
-                  <CFormFeedback valid>Looks good!</CFormFeedback>
                 </CCol>
                 <CCol md={6}>
                   <CFormLabel htmlFor="address">Address</CFormLabel>
@@ -128,7 +125,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
                     onChange={(e) => setPostData({ ...postData, address: e.target.value })}
                     required
                   />
-                  <CFormFeedback invalid>Please provide a valid Address</CFormFeedback>
                 </CCol>
                 <CCol md={3}>
                   <CFormLabel htmlFor="city">City</CFormLabel>
@@ -207,7 +203,29 @@ const StudentForm = ({ currentId, setCurrentId }) => {
 
 export default StudentForm
 
+StudentTable.propTypes = {
+  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.node,
+  currentId: PropTypes.node,
+  postData: PropTypes.object,
+  setPostData: PropTypes.object,
+  setVisible: PropTypes.bool,
+  visible: PropTypes.bool,
+}
+// StudentRow.propTypes = {
+//   post: PropTypes.object,
+//   currentId: PropTypes.number,
+//   setCurrentId: PropTypes.number,
+//   currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//   setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+//   postData: PropTypes.object,
+//   setPostData: PropTypes.object,
+//   setVisible: PropTypes.bool,
+// }
 StudentForm.propTypes = {
-  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.node,
+  currentId: PropTypes.node,
+  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }

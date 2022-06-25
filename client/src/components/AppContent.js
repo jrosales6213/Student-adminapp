@@ -46,10 +46,12 @@ const AppContent = () => {
   )
 }
 
-export default AppContent
+// export default AppContent
 
 StudentForm.propTypes = {
-  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.node,
+  currentIdId: PropTypes.node,
 }
-// export default React.memo(AppContent)
+export default React.memo(AppContent)

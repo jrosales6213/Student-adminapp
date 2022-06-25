@@ -50,7 +50,7 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
               <CIcon
                 icon={cilDelete}
                 size={'lg'}
-                className="me-2 pr-3 pl-3s"
+                className="delete-button"
                 onClick={() => dispatch(deletePost(item._id))}
               ></CIcon>
             </CCol>
@@ -104,8 +104,10 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
 export default StudentTable
 
 StudentTable.propTypes = {
-  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.node,
+  currentId: PropTypes.node,
   postData: PropTypes.object,
   setPostData: PropTypes.object,
   setVisible: PropTypes.bool,
@@ -113,8 +115,10 @@ StudentTable.propTypes = {
 }
 StudentRow.propTypes = {
   post: PropTypes.object,
-  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.node,
+  currentId: PropTypes.node,
   postData: PropTypes.object,
   setPostData: PropTypes.object,
   setVisible: PropTypes.bool,

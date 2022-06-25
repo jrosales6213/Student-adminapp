@@ -3,5 +3,11 @@
 }
 .edit-button:hover {
   transform: scale(1.2);
-  color: rgb(40, 55, 142);
+}
+
+.delete-button {
+  color: rgb(225, 47, 19);
+}
+.delete-button:hover {
+  transform: scale(1.2);
 }
