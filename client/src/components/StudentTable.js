@@ -16,18 +16,19 @@ import {
 import './StudentTable.css'
 
 import CIcon from '@coreui/icons-react'
-import { cilPencil, cilDelete, cilNotes } from '@coreui/icons'
+import { cilPencil, cilDelete } from '@coreui/icons'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { deletePost } from '../redux/actions/posts'
+// import DeleteModal from './DeleteModal'
 
 function StudentRow({ post, setCurrentId, setVisible, visible }) {
-  console.log(post)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   function handleEdit(item) {
     setVisible(!visible)
     setCurrentId(item)
   }
-
   return (
     <>
       {post.map((item) => (
@@ -46,10 +47,12 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
               ></CIcon>
             </CCol>
             <CCol>
-              <CIcon icon={cilDelete} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
-            </CCol>
-            <CCol>
-              <CIcon icon={cilNotes} size={'lg'} className="me-2 pr-3 pl-3s"></CIcon>
+              <CIcon
+                icon={cilDelete}
+                size={'lg'}
+                className="me-2 pr-3 pl-3s"
+                onClick={() => dispatch(deletePost(item._id))}
+              ></CIcon>
             </CCol>
           </CTableDataCell>
         </CTableRow>

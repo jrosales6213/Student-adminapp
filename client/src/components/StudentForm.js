@@ -78,7 +78,7 @@ const StudentForm = ({ currentId, setCurrentId }) => {
       <CRow>
         <CCol>
           <CButton className="m-2" onClick={() => setVisible(!visible)}>
-            Add Student
+            New Student
           </CButton>
           <CModal visible={visible} onClose={() => setVisible(false)}>
             <CModalHeader>
@@ -177,12 +177,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
                   />
                   <CFormFeedback invalid>Please provide a valid Email</CFormFeedback>
                 </CCol>
-
-                {/* <CCol xs={12} className="mb-5">
-                  <CButton color="primary" type="submit" onClick={() => setVisible(false)}>
-                    Submit
-                  </CButton>
-                </CCol> */}
                 <CButton color="primary" type="submit">
                   Add
                 </CButton>
