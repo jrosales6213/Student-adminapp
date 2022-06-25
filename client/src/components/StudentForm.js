@@ -64,9 +64,11 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     if (currentId === 0) {
       dispatch(createPost(postData))
       clear()
+      setVisible(!visible)
     } else {
       dispatch(updatePost(currentId, postData))
       clear()
+      setVisible(!visible)
       console.log('CurrentId already exists')
     }
   }
@@ -75,108 +77,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     <>
       <CRow>
         <CCol>
-          {/* <CForm className="row g-3" onSubmit={handleSubmit}>
-            <CCol md={4}>
-              <CFormLabel htmlFor="firstName">First Name</CFormLabel>
-              <CFormInput
-                type="text"
-                id="firstName"
-                value={postData.firstname}
-                onChange={(e) => setPostData({ ...postData, firstname: e.target.value })}
-                required
-              />
-              <CFormFeedback valid>Looks good!</CFormFeedback>
-            </CCol>
-            <CCol md={4}>
-              <CFormLabel htmlFor="lastName">Last Name</CFormLabel>
-              <CFormInput
-                type="text"
-                id="lastName"
-                value={postData.lastname}
-                onChange={(e) => setPostData({ ...postData, lastname: e.target.value })}
-                required
-              />
-              <CFormFeedback valid>Looks good!</CFormFeedback>
-            </CCol>
-            <CCol md={4}>
-              <CFormLabel htmlFor="studentID">Student ID</CFormLabel>
-              <CFormInput
-                type="text"
-                id="studentID"
-                value={postData.studentID}
-                onChange={(e) => setPostData({ ...postData, studentID: e.target.value })}
-                required
-              />
-              <CFormFeedback valid>Looks good!</CFormFeedback>
-            </CCol>
-            <CCol md={6}>
-              <CFormLabel htmlFor="address">Address</CFormLabel>
-              <CFormInput
-                type="text"
-                id="address"
-                value={postData.address}
-                onChange={(e) => setPostData({ ...postData, address: e.target.value })}
-                required
-              />
-              <CFormFeedback invalid>Please provide a valid Address</CFormFeedback>
-            </CCol>
-            <CCol md={3}>
-              <CFormLabel htmlFor="city">City</CFormLabel>
-              <CFormSelect
-                id="city"
-                value={postData.city}
-                onChange={(e) => setPostData({ ...postData, city: e.target.value })}
-              >
-                <option>Choose...</option>
-                <option>Moreno Valley</option>
-                <option>Perris</option>
-                <option>Riverside</option>
-              </CFormSelect>
-              <CFormFeedback invalid>Please provide a valid city.</CFormFeedback>
-            </CCol>
-            <CCol md={3}>
-              <CFormLabel htmlFor="zip">state</CFormLabel>
-              <CFormInput
-                type="text"
-                id="state"
-                value={postData.state}
-                onChange={(e) => setPostData({ ...postData, state: e.target.value })}
-                required
-              />
-              <CFormFeedback invalid>Please provide a valid Zip</CFormFeedback>
-            </CCol>
-            <CCol md={6}>
-              <CFormLabel htmlFor="phoneNum">Phone # </CFormLabel>
-              <CFormInput
-                type="text"
-                id="phoneNum"
-                value={postData.mobile}
-                onChange={(e) => setPostData({ ...postData, mobile: e.target.value })}
-                required
-              />
-              <CFormFeedback invalid>Please provide a valid Number</CFormFeedback>
-            </CCol>
-            <CCol md={6}>
-              <CFormLabel htmlFor="email">Email</CFormLabel>
-              <CFormInput
-                type="text"
-                id="email"
-                value={postData.email}
-                onChange={(e) => setPostData({ ...postData, email: e.target.value })}
-                required
-              />
-              <CFormFeedback invalid>Please provide a valid Email</CFormFeedback>
-            </CCol>
-
-            <CCol xs={12} className="mb-5">
-              <CButton color="primary" type="submit">
-                Submit
-              </CButton>
-            </CCol>
-
-            <ModalForm />
-          </CForm> */}
-
           <CButton className="m-2" onClick={() => setVisible(!visible)}>
             Add Student
           </CButton>
@@ -283,16 +183,15 @@ const StudentForm = ({ currentId, setCurrentId }) => {
                     Submit
                   </CButton>
                 </CCol> */}
+                <CButton color="primary" type="submit">
+                  Add
+                </CButton>
+                <CButton color="secondary" onClick={() => clear()}>
+                  Clear
+                </CButton>
               </CForm>
             </CModalBody>
-            <CModalFooter>
-              <CButton color="secondary" onClick={() => setVisible(false)}>
-                Close
-              </CButton>
-              <CButton color="primary" type="submit" onClick={() => setVisible(false)}>
-                Add
-              </CButton>
-            </CModalFooter>
+            <CModalFooter></CModalFooter>
           </CModal>
         </CCol>
       </CRow>
@@ -315,6 +214,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
 export default StudentForm
 
 StudentForm.propTypes = {
-  currentId: PropTypes.number,
-  setCurrentId: PropTypes.number,
+  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }

@@ -17,16 +17,12 @@ import './StudentTable.css'
 
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilDelete, cilNotes } from '@coreui/icons'
-import { useSelector, useDispatch } from 'react-redux'
-import { updatePost } from '../redux/actions/posts'
+import { useSelector } from 'react-redux'
 
-function StudentRow({ post, currentId, setCurrentId, postData, setPostData, setVisible, visible }) {
+function StudentRow({ post, setCurrentId, setVisible, visible }) {
   console.log(post)
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  // const handleEdit = () => {
-  //   setVisible(!visible)
-  // }
   function handleEdit(item) {
     setVisible(!visible)
     setCurrentId(item)
@@ -45,6 +41,7 @@ function StudentRow({ post, currentId, setCurrentId, postData, setPostData, setV
                 icon={cilPencil}
                 size={'lg'}
                 className="edit-button"
+                type="submit"
                 onClick={() => handleEdit(item._id)}
               ></CIcon>
             </CCol>
@@ -104,8 +101,8 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
 export default StudentTable
 
 StudentTable.propTypes = {
-  setCurrentId: PropTypes.number,
-  currentId: PropTypes.number,
+  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   postData: PropTypes.object,
   setPostData: PropTypes.object,
   setVisible: PropTypes.bool,
@@ -113,8 +110,8 @@ StudentTable.propTypes = {
 }
 StudentRow.propTypes = {
   post: PropTypes.object,
-  currentId: PropTypes.number,
-  setCurrentId: PropTypes.number,
+  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   postData: PropTypes.object,
   setPostData: PropTypes.object,
   setVisible: PropTypes.bool,

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
 import { useDispatch } from 'react-redux'
 import { getPosts } from '../redux/actions/posts'
+import PropTypes from 'prop-types'
 
 import StudentForm from './StudentForm.js'
 
@@ -47,4 +48,8 @@ const AppContent = () => {
 
 export default AppContent
 
+StudentForm.propTypes = {
+  currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+}
 // export default React.memo(AppContent)
