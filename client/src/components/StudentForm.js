@@ -201,17 +201,15 @@ const StudentForm = ({ currentId, setCurrentId }) => {
   )
 }
 
-export default StudentForm
-
 StudentTable.propTypes = {
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.node,
-  currentId: PropTypes.node,
-  postData: PropTypes.object,
-  setPostData: PropTypes.object,
-  setVisible: PropTypes.bool,
-  visible: PropTypes.bool,
+  setCurrentId: PropTypes.any,
+  currentId: PropTypes.any,
+  postData: PropTypes.any,
+  setPostData: PropTypes.any,
+  setVisible: PropTypes.any,
+  visible: PropTypes.any,
 }
 // StudentRow.propTypes = {
 //   post: PropTypes.object,
@@ -224,8 +222,8 @@ StudentTable.propTypes = {
 //   setVisible: PropTypes.bool,
 // }
 StudentForm.propTypes = {
-  setCurrentId: PropTypes.node,
-  currentId: PropTypes.node,
-  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setCurrentId: PropTypes.any,
+  currentId: PropTypes.any,
 }
+
+export default StudentForm

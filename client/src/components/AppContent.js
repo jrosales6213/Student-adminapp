@@ -51,7 +51,7 @@ const AppContent = () => {
 StudentForm.propTypes = {
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.node,
-  currentIdId: PropTypes.node,
+  setCurrentId: PropTypes.any,
+  currentId: PropTypes.any,
 }
 export default React.memo(AppContent)

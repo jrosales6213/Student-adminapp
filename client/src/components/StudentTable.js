@@ -101,26 +101,26 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
   )
 }
 
-export default StudentTable
-
 StudentTable.propTypes = {
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.node,
-  currentId: PropTypes.node,
-  postData: PropTypes.object,
-  setPostData: PropTypes.object,
-  setVisible: PropTypes.bool,
-  visible: PropTypes.bool,
+  setCurrentId: PropTypes.any,
+  currentId: PropTypes.any,
+  postData: PropTypes.any,
+  setPostData: PropTypes.any,
+  setVisible: PropTypes.any,
+  visible: PropTypes.any,
 }
 StudentRow.propTypes = {
-  post: PropTypes.object,
+  post: PropTypes.any,
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.node,
-  currentId: PropTypes.node,
-  postData: PropTypes.object,
-  setPostData: PropTypes.object,
-  setVisible: PropTypes.bool,
-  visible: PropTypes.bool,
+  setCurrentId: PropTypes.any,
+  currentId: PropTypes.any,
+  postData: PropTypes.any,
+  setPostData: PropTypes.any,
+  setVisible: PropTypes.any,
+  visible: PropTypes.any,
 }
+
+export default StudentTable
