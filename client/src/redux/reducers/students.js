@@ -1,16 +1,18 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../actionTypes'
 
-export default (posts = [], action) => {
+export default (students = [], action) => {
   switch (action.type) {
     case FETCH_ALL:
       return action.payload
     case CREATE:
-      return [...posts, action.payload]
+      return [...students, action.payload]
     case UPDATE:
-      return posts.map((post) => (post._id === action.payload._id ? action.payload : post))
+      return students.map((student) =>
+        student._id === action.payload._id ? action.payload : student,
+      )
     case DELETE:
-      return posts.filter((post) => post._id !== action.payload)
+      return students.filter((student) => student._id !== action.payload)
     default:
-      return posts
+      return students
   }
 }

@@ -2,7 +2,7 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../actionTypes'
 
 import * as api from '../api/index'
 
-export const getPosts = () => async (dispatch) => {
+export const getStudents = () => async (dispatch) => {
   try {
     const { data } = await api.fetchStudents()
 
@@ -12,9 +12,9 @@ export const getPosts = () => async (dispatch) => {
   }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createStudent = (student) => async (dispatch) => {
   try {
-    const { data } = await api.createStudent(post)
+    const { data } = await api.createStudent(student)
 
     dispatch({ type: CREATE, payload: data })
   } catch (error) {
@@ -22,9 +22,9 @@ export const createPost = (post) => async (dispatch) => {
   }
 }
 
-export const updatePost = (id, post) => async (dispatch) => {
+export const updateStudent = (id, student) => async (dispatch) => {
   try {
-    const { data } = await api.updateStudent(id, post)
+    const { data } = await api.updateStudent(id, student)
 
     dispatch({ type: UPDATE, payload: data })
   } catch (error) {
@@ -32,7 +32,7 @@ export const updatePost = (id, post) => async (dispatch) => {
   }
 }
 
-export const deletePost = (id) => async (dispatch) => {
+export const deleteStudent = (id) => async (dispatch) => {
   try {
     await api.deleteStudent(id)
 

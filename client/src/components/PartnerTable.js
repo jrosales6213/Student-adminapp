@@ -76,15 +76,15 @@ const PartnerTable = ({
         <CCol xs={12}>
           <CCard className="mb-4">
             <CCardHeader>
-              <strong>Students</strong>
+              <strong>Business Partners</strong>
             </CCardHeader>
             <CCardBody>
               <CTable>
                 <CTableHead>
                   <CTableRow>
-                    <CTableHeaderCell scope="col">First Name</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Last Name</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Student ID</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Company</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Manager</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Phone #</CTableHeaderCell>
                     <CTableHeaderCell scope="col"></CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>

@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 
-import posts from './students'
+import students from './students'
 import partners from './partners'
+import employees from './employees'
 
-export const reducers = combineReducers({ posts, partners })
+export const reducers = combineReducers({ students, partners, employees })

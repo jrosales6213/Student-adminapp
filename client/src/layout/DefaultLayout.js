@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index'
 
-import { getPosts } from '../redux/actions/posts'
+// import { getPosts } from '../redux/actions/students'
 
 const DefaultLayout = () => {
   // const [currentId, setCurrentId] = useState(0)

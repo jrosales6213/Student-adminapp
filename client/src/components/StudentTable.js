@@ -19,11 +19,10 @@ import CIcon from '@coreui/icons-react'
 import { cilPencil, cilDelete } from '@coreui/icons'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { deletePost } from '../redux/actions/posts'
+import { deleteStudent } from '../redux/actions/students'
 // import DeleteModal from './DeleteModal'
 
-function StudentRow({ post, setCurrentId, setVisible, visible }) {
-  console.log(post)
+function StudentRow({ student, setCurrentId, setVisible, visible }) {
   const dispatch = useDispatch()
 
   function handleEdit(item) {
@@ -32,11 +31,11 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
   }
   return (
     <>
-      {post.map((item) => (
-        <CTableRow key={item._id}>
-          <CTableHeaderCell>{item.firstname}</CTableHeaderCell>
-          <CTableDataCell>{item.lastname}</CTableDataCell>
-          <CTableDataCell>{item.studentID}</CTableDataCell>
+      {student.map((student) => (
+        <CTableRow key={student._id}>
+          <CTableHeaderCell>{student.firstname}</CTableHeaderCell>
+          <CTableDataCell>{student.lastname}</CTableDataCell>
+          <CTableDataCell>{student.studentID}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">
             <CCol>
               <CIcon
@@ -44,7 +43,7 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
                 size={'lg'}
                 className="edit-button"
                 type="submit"
-                onClick={() => handleEdit(item._id)}
+                onClick={() => handleEdit(student._id)}
               ></CIcon>
             </CCol>
             <CCol>
@@ -52,7 +51,7 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
                 icon={cilDelete}
                 size={'lg'}
                 className="delete-button"
-                onClick={() => dispatch(deletePost(item._id))}
+                onClick={() => dispatch(deleteStudent(student._id))}
               ></CIcon>
             </CCol>
           </CTableDataCell>
@@ -63,7 +62,7 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
 }
 
 const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisible, visible }) => {
-  const posts = useSelector((state) => state.posts)
+  const students = useSelector((state) => state.students)
   return (
     <CRow>
       <CCol>
@@ -84,7 +83,7 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
                 </CTableHead>
                 <CTableBody>
                   <StudentRow
-                    post={posts}
+                    student={students}
                     currentId={currentId}
                     setCurrentId={setCurrentId}
                     postData={postData}
@@ -105,6 +104,7 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
 StudentTable.propTypes = {
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  student: PropTypes.any,
   setCurrentId: PropTypes.any,
   currentId: PropTypes.any,
   postData: PropTypes.any,
@@ -113,7 +113,7 @@ StudentTable.propTypes = {
   visible: PropTypes.any,
 }
 StudentRow.propTypes = {
-  post: PropTypes.any,
+  student: PropTypes.any,
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setCurrentId: PropTypes.any,

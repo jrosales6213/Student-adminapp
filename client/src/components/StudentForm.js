@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPosts, createPost, updatePost } from '../redux/actions/posts'
+import { getStudents, createStudent, updateStudent } from '../redux/actions/students'
 // import FileBase from 'react-file-base64';
 import {
   CButton,
@@ -34,18 +34,18 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     // jobsite: PropTypes.object,
   })
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null,
+  const newStudent = useSelector((state) =>
+    currentId ? state.students.find((student) => student._id === currentId) : null,
   )
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getPosts())
+    dispatch(getStudents())
   }, [currentId, dispatch])
 
   useEffect(() => {
-    if (post) setPostData(post)
-  }, [post])
+    if (newStudent) setPostData(newStudent)
+  }, [newStudent])
 
   const clear = () => {
     setCurrentId(0)
@@ -66,11 +66,11 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     e.preventDefault()
 
     if (currentId === 0) {
-      dispatch(createPost(postData))
+      dispatch(createStudent(postData))
       clear()
       setVisible(!visible)
     } else {
-      dispatch(updatePost(currentId, postData))
+      dispatch(updateStudent(currentId, postData))
       clear()
       setVisible(!visible)
       console.log('CurrentId already exists')
