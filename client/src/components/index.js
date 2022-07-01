@@ -8,7 +8,7 @@ import DocsCallout from './DocsCallout'
 import DocsLink from './DocsLink'
 import DocsExample from './DocsExample'
 // import StudentForm from './StudentForm'
-import PartnerForm from './PartnersForm'
+// import PartnerForm from './PartnersForm'
 
 export {
   AppBreadcrumb,
@@ -21,5 +21,5 @@ export {
   DocsLink,
   DocsExample,
   // StudentForm,
-  PartnerForm,
+  // PartnerForm,
 }

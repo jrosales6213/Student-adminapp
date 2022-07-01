@@ -1,22 +1,29 @@
-import React, { Suspense, useState, useEffect } from 'react'
+import React, { Suspense, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { CContainer, CSpinner } from '@coreui/react'
-import { useDispatch } from 'react-redux'
-import { getPosts } from '../redux/actions/posts'
+// import { useDispatch } from 'react-redux'
+// import { getPosts } from '../redux/actions/posts'
+// import { getPartners } from '../redux/actions/partners'
 import PropTypes from 'prop-types'
 
 import StudentForm from './StudentForm.js'
+import PartnerForm from './PartnerForm.js'
 
 // routes config
 // import routes from '../routes'
 
 const AppContent = () => {
   const [currentId, setCurrentId] = useState(0)
-  const dispatch = useDispatch()
+  const [partnerId, setPartnerId] = useState(0)
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getPosts())
-  }, [currentId, dispatch])
+  // useEffect(() => {
+  //   dispatch(getPosts())
+  // }, [currentId, dispatch])
+
+  // useEffect(() => {
+  //   dispatch(getPartners())
+  // }, [partnerId, dispatch])
 
   return (
     <CContainer lg>
@@ -40,6 +47,10 @@ const AppContent = () => {
             path="/students"
             element={<StudentForm currentId={currentId} setCurrentId={setCurrentId} />}
           />
+          <Route
+            path="/partners"
+            element={<PartnerForm partnerId={partnerId} setPartnerId={setPartnerId} />}
+          />
         </Routes>
       </Suspense>
     </CContainer>
@@ -53,5 +64,9 @@ StudentForm.propTypes = {
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setCurrentId: PropTypes.any,
   currentId: PropTypes.any,
+}
+PartnerForm.propTypes = {
+  setPartnerId: PropTypes.any,
+  partnerId: PropTypes.any,
 }
 export default React.memo(AppContent)

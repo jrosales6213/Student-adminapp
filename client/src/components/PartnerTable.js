@@ -19,24 +19,23 @@ import CIcon from '@coreui/icons-react'
 import { cilPencil, cilDelete } from '@coreui/icons'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { deletePost } from '../redux/actions/posts'
+import { deletePartner } from '../redux/actions/partners'
 // import DeleteModal from './DeleteModal'
 
-function StudentRow({ post, setCurrentId, setVisible, visible }) {
-  console.log(post)
+function PartnerRow({ post, setPartnerId, setVisible, visible }) {
   const dispatch = useDispatch()
 
   function handleEdit(item) {
     setVisible(!visible)
-    setCurrentId(item)
+    setPartnerId(item)
   }
   return (
     <>
       {post.map((item) => (
         <CTableRow key={item._id}>
-          <CTableHeaderCell>{item.firstname}</CTableHeaderCell>
-          <CTableDataCell>{item.lastname}</CTableDataCell>
-          <CTableDataCell>{item.studentID}</CTableDataCell>
+          <CTableHeaderCell>{item.company}</CTableHeaderCell>
+          <CTableDataCell>{item.manager}</CTableDataCell>
+          <CTableDataCell>{item.phone}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">
             <CCol>
               <CIcon
@@ -52,7 +51,7 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
                 icon={cilDelete}
                 size={'lg'}
                 className="delete-button"
-                onClick={() => dispatch(deletePost(item._id))}
+                onClick={() => dispatch(deletePartner(item._id))}
               ></CIcon>
             </CCol>
           </CTableDataCell>
@@ -62,8 +61,15 @@ function StudentRow({ post, setCurrentId, setVisible, visible }) {
   )
 }
 
-const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisible, visible }) => {
-  const posts = useSelector((state) => state.posts)
+const PartnerTable = ({
+  partnerId,
+  setPartnerId,
+  partnerData,
+  setPartnerData,
+  setVisible,
+  visible,
+}) => {
+  const posts = useSelector((state) => state.partners)
   return (
     <CRow>
       <CCol>
@@ -83,12 +89,12 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
-                  <StudentRow
+                  <PartnerRow
                     post={posts}
-                    currentId={currentId}
-                    setCurrentId={setCurrentId}
-                    postData={postData}
-                    setPostData={setPostData}
+                    partnerId={partnerId}
+                    setPartnerId={setPartnerId}
+                    partnerData={partnerData}
+                    setPartnerData={setPartnerData}
                     setVisible={setVisible}
                     visible={visible}
                   />
@@ -102,26 +108,26 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
   )
 }
 
-StudentTable.propTypes = {
+PartnerTable.propTypes = {
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.any,
-  currentId: PropTypes.any,
-  postData: PropTypes.any,
-  setPostData: PropTypes.any,
+  setPartnerId: PropTypes.any,
+  partnerId: PropTypes.any,
+  partnerData: PropTypes.any,
+  setPartnerData: PropTypes.any,
   setVisible: PropTypes.any,
   visible: PropTypes.any,
 }
-StudentRow.propTypes = {
+PartnerRow.propTypes = {
   post: PropTypes.any,
   // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setCurrentId: PropTypes.any,
-  currentId: PropTypes.any,
-  postData: PropTypes.any,
-  setPostData: PropTypes.any,
+  setPartnerId: PropTypes.any,
+  partnerId: PropTypes.any,
+  partnerData: PropTypes.any,
+  setPartnerData: PropTypes.any,
   setVisible: PropTypes.any,
   visible: PropTypes.any,
 }
 
-export default StudentTable
+export default PartnerTable
