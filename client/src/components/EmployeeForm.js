@@ -18,7 +18,7 @@ import {
   CFormSelect,
   CRow,
 } from '@coreui/react'
-// import PartnerTable from './PartnerTable'
+import EmployeeTable from './EmployeeTable'
 
 const EmployeeForm = ({ employeeId, setEmployeeId }) => {
   const [visible, setVisible] = useState(false)
@@ -36,7 +36,7 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
 
   useEffect(() => {
     dispatch(getEmployees())
-  }, [studentId, dispatch])
+  }, [employeeId, dispatch])
 
   useEffect(() => {
     if (newEmployee) setEmployeeInput(newEmployee)
@@ -55,11 +55,11 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
     e.preventDefault()
 
     if (employeeId === 0) {
-      dispatch(createEmployee(newEmployee))
+      dispatch(createEmployee(employeeInput))
       clear()
       setVisible(!visible)
     } else {
-      dispatch(updateEmployee(employeeId, newEmployee))
+      dispatch(updateEmployee(employeeId, employeeInput))
       clear()
       setVisible(!visible)
       console.log('EmployeeId already exists')
@@ -71,84 +71,45 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
       <CRow>
         <CCol>
           <CButton className="m-2" onClick={() => setVisible(!visible)}>
-            New Partner
+            New Employee
           </CButton>
           <CModal visible={visible} onClose={() => setVisible(false)}>
             <CModalHeader>
-              <CModalTitle>Modal title</CModalTitle>
+              <CModalTitle>Staff Information</CModalTitle>
             </CModalHeader>
             <CModalBody>
               <CForm className="row g-3" onSubmit={handleSubmit}>
                 <CCol md={12}>
-                  <CFormLabel htmlFor="company">Company</CFormLabel>
+                  <CFormLabel htmlFor="company">First Name</CFormLabel>
                   <CFormInput
                     type="text"
-                    id="company"
-                    value={partnerData.company}
-                    onChange={(e) => setPartnerData({ ...partnerData, company: e.target.value })}
+                    id="firstname"
+                    value={employeeInput.firstname}
+                    onChange={(e) =>
+                      setEmployeeInput({ ...employeeInput, firstname: e.target.value })
+                    }
                     required
                   />
                 </CCol>
                 <CCol md={12}>
-                  <CFormLabel htmlFor="manager">Manager</CFormLabel>
+                  <CFormLabel htmlFor="manager">Last Name</CFormLabel>
                   <CFormInput
                     type="text"
-                    id="manager"
-                    value={partnerData.manager}
-                    onChange={(e) => setPartnerData({ ...partnerData, manager: e.target.value })}
+                    id="lastname"
+                    value={employeeInput.lastname}
+                    onChange={(e) =>
+                      setEmployeeInput({ ...employeeInput, lastname: e.target.value })
+                    }
                     required
                   />
                 </CCol>
                 <CCol md={12}>
-                  <CFormLabel htmlFor="phone">Phone</CFormLabel>
+                  <CFormLabel htmlFor="phone">Title</CFormLabel>
                   <CFormInput
                     type="text"
-                    id="phone"
-                    value={partnerData.phone}
-                    onChange={(e) => setPartnerData({ ...partnerData, phone: e.target.value })}
-                    required
-                  />
-                </CCol>
-                <CCol md={6}>
-                  <CFormLabel htmlFor="address">Address</CFormLabel>
-                  <CFormInput
-                    type="text"
-                    id="address"
-                    value={partnerData.address}
-                    onChange={(e) => setPartnerData({ ...partnerData, address: e.target.value })}
-                    required
-                  />
-                </CCol>
-                <CCol md={3}>
-                  <CFormLabel htmlFor="city">City</CFormLabel>
-                  <CFormSelect
-                    id="city"
-                    value={partnerData.city}
-                    onChange={(e) => setPartnerData({ ...partnerData, city: e.target.value })}
-                  >
-                    <option>Choose...</option>
-                    <option>Moreno Valley</option>
-                    <option>Perris</option>
-                    <option>Riverside</option>
-                  </CFormSelect>
-                </CCol>
-                <CCol md={3}>
-                  <CFormLabel htmlFor="state">State</CFormLabel>
-                  <CFormInput
-                    type="text"
-                    id="state"
-                    value={partnerData.state}
-                    onChange={(e) => setPartnerData({ ...partnerData, state: e.target.value })}
-                    required
-                  />
-                </CCol>
-                <CCol md={6}>
-                  <CFormLabel htmlFor="phoneNum">Comments </CFormLabel>
-                  <CFormInput
-                    type="text"
-                    id="comments"
-                    value={partnerData.comment}
-                    onChange={(e) => setPartnerData({ ...partnerData, comment: e.target.value })}
+                    id="title"
+                    value={employeeInput.title}
+                    onChange={(e) => setEmployeeInput({ ...employeeInput, title: e.target.value })}
                     required
                   />
                 </CCol>
@@ -160,17 +121,16 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
                 </CButton>
               </CForm>
             </CModalBody>
-            <CModalFooter></CModalFooter>
           </CModal>
         </CCol>
       </CRow>
       <CRow>
         <CCol>
-          <PartnerTable
-            setPartnerId={setPartnerId}
-            partnerId={partnerId}
-            partnerData={partnerData}
-            setPartnerData={setPartnerData}
+          <EmployeeTable
+            setEmployeeId={setEmployeeId}
+            employeeId={employeeId}
+            employeeInput={employeeInput}
+            setEmployeeInput={setEmployeeInput}
             setVisible={setVisible}
             visible={visible}
           />
@@ -180,9 +140,16 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
   )
 }
 
-PartnerForm.propTypes = {
-  setPartnerId: PropTypes.any,
-  partnerId: PropTypes.any,
+EmployeeForm.propTypes = {
+  employeeId: PropTypes.any,
+  setEmployeeId: PropTypes.any,
 }
-
-export default PartnerForm
+EmployeeTable.propTypes = {
+  employeeId: PropTypes.any,
+  setEmployeeId: PropTypes.any,
+  employeeInput: PropTypes.any,
+  setEmployeeInput: PropTypes.any,
+  setVisible: PropTypes.any,
+  visible: PropTypes.any,
+}
+export default EmployeeForm

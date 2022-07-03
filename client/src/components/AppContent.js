@@ -7,6 +7,8 @@ import StudentForm from './StudentForm.js'
 import PartnerForm from './PartnerForm.js'
 import EmployeeForm from './EmployeeForm.js'
 
+import routes from '../routes'
+
 const AppContent = () => {
   const [currentId, setCurrentId] = useState(0)
   const [partnerId, setPartnerId] = useState(0)
@@ -16,7 +18,7 @@ const AppContent = () => {
     <CContainer lg>
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
-          {/* {routes.map((route, idx) => {
+          {routes.map((route, idx) => {
             return (
               route.element && (
                 <Route
@@ -28,7 +30,7 @@ const AppContent = () => {
                 />
               )
             )
-          })} */}
+          })}
           <Route path="/" element={<Navigate to="dashboard" replace />} />
           <Route
             path="/students"
@@ -59,5 +61,9 @@ StudentForm.propTypes = {
 PartnerForm.propTypes = {
   setPartnerId: PropTypes.any,
   partnerId: PropTypes.any,
+}
+EmployeeForm.propTypes = {
+  employeeId: PropTypes.any,
+  setEmployeeId: PropTypes.any,
 }
 export default React.memo(AppContent)

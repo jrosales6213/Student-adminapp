@@ -33,7 +33,7 @@ function StudentRow({ student, setCurrentId, setVisible, visible }) {
     <>
       {student.map((student) => (
         <CTableRow key={student._id}>
-          <CTableHeaderCell>{student.firstname}</CTableHeaderCell>
+          <CTableDataCell>{student.firstname}</CTableDataCell>
           <CTableDataCell>{student.lastname}</CTableDataCell>
           <CTableDataCell>{student.studentID}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">

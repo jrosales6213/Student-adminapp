@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE } from '../actionTypes'
+import { FETCH_ALL, CREATE, UPDATE, DELETE, TOTAL } from '../actionTypes'
 
 import * as api from '../api/index'
 

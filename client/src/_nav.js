@@ -8,12 +8,15 @@ import {
   cilCursor,
   cilDrop,
   cilNotes,
-  cilPeople,
   cilPencil,
   cilPuzzle,
   cilSchool,
   cilSpeedometer,
   cilStar,
+  cilPeople,
+  cilBuilding,
+  cilCalendarCheck,
+  cilList,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -42,19 +45,25 @@ const _nav = [
     component: CNavItem,
     name: 'Partners',
     to: '/Partners',
+    icon: <CIcon icon={cilBuilding} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Employees',
+    to: '/Employees',
     icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Colors',
-    to: '/theme/colors',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+    name: 'Events',
+    to: '/Events',
+    icon: <CIcon icon={cilCalendarCheck} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
-    name: 'Typography',
-    to: '/theme/typography',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+    name: 'Tasks',
+    to: '/Tasks',
+    icon: <CIcon icon={cilList} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,

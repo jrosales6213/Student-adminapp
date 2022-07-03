@@ -33,7 +33,7 @@ function PartnerRow({ post, setPartnerId, setVisible, visible }) {
     <>
       {post.map((item) => (
         <CTableRow key={item._id}>
-          <CTableHeaderCell>{item.company}</CTableHeaderCell>
+          <CTableDataCell>{item.company}</CTableDataCell>
           <CTableDataCell>{item.manager}</CTableDataCell>
           <CTableDataCell>{item.phone}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">

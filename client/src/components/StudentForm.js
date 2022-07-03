@@ -86,7 +86,7 @@ const StudentForm = ({ currentId, setCurrentId }) => {
           </CButton>
           <CModal visible={visible} onClose={() => setVisible(false)}>
             <CModalHeader>
-              <CModalTitle>Modal title</CModalTitle>
+              <CModalTitle>Student Information</CModalTitle>
             </CModalHeader>
             <CModalBody>
               <CForm className="row g-3" onSubmit={handleSubmit}>

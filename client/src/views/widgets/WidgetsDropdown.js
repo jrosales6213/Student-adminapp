@@ -21,7 +21,7 @@ const WidgetsDropdown = () => {
           color="primary"
           icon={<CIcon icon={cilEducation} height={24} />}
           title="Students"
-          value="40"
+          value="12"
         />
       </CCol>
       <CCol xs={6}>

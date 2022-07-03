@@ -1,7 +1,9 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
+import { CImage, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
+import avatar1 from 'src/assets/brand/bridgeslogo.png'
+import bridgesshade from 'src/assets/brand/bridgesshade.png'
 import CIcon from '@coreui/icons-react'
 
 import { AppSidebarNav } from './AppSidebarNav'
@@ -29,9 +31,10 @@ const AppSidebar = () => {
         dispatch({ type: 'set', sidebarShow: visible })
       }}
     >
-      <CSidebarBrand className="d-none d-md-flex" to="/">
-        <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
-        <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
+      <CSidebarBrand className="d-none d-md-flex p-2" to="/">
+        {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
+        <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
+        <h3>Bridges To Adulthood Program</h3>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

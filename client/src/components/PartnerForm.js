@@ -25,7 +25,7 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
   const [partnerData, setPartnerData] = useState({
     company: PropTypes.string,
     manager: PropTypes.string,
-    phone: PropTypes.number,
+    phone: PropTypes.string,
     address: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
@@ -88,7 +88,7 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
             <CModalBody>
               <CForm className="row g-3" onSubmit={handleSubmit}>
                 <CCol md={12}>
-                  <CFormLabel htmlFor="company">Company</CFormLabel>
+                  <CFormLabel htmlFor="company">Partner Information</CFormLabel>
                   <CFormInput
                     type="text"
                     id="company"
