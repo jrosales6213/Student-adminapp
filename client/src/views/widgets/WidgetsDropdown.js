@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { CRow, CCol, CWidgetStatsF } from '@coreui/react'
+import { useSelector } from 'react-redux'
 import CIcon from '@coreui/icons-react'
 import { cilClipboard, cilEducation, cilGroup, cilMoney } from '@coreui/icons'
 
 const WidgetsDropdown = () => {
+  const students = useSelector((state) => state.students)
+  const partners = useSelector((state) => state.partners)
+
   return (
     <CRow>
       <CCol xs={6}>
@@ -21,7 +25,7 @@ const WidgetsDropdown = () => {
           color="primary"
           icon={<CIcon icon={cilEducation} height={24} />}
           title="Students"
-          value="12"
+          value={students.length}
         />
       </CCol>
       <CCol xs={6}>
@@ -30,7 +34,7 @@ const WidgetsDropdown = () => {
           color="danger"
           icon={<CIcon icon={cilGroup} height={24} />}
           title="Partners"
-          value="6"
+          value={partners.length}
         />
       </CCol>
       <CCol xs={6}>

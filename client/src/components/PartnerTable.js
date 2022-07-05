@@ -16,7 +16,7 @@ import {
 import './StudentTable.css'
 
 import CIcon from '@coreui/icons-react'
-import { cilPencil, cilDelete } from '@coreui/icons'
+import { cilPencil, cilTrash } from '@coreui/icons'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { deletePartner } from '../redux/actions/partners'
@@ -48,7 +48,7 @@ function PartnerRow({ post, setPartnerId, setVisible, visible }) {
             </CCol>
             <CCol>
               <CIcon
-                icon={cilDelete}
+                icon={cilTrash}
                 size={'lg'}
                 className="delete-button"
                 onClick={() => dispatch(deletePartner(item._id))}

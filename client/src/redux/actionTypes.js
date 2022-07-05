@@ -2,3 +2,18 @@ export const CREATE = 'CREATE'
 export const UPDATE = 'UPDATE'
 export const DELETE = 'DELETE'
 export const FETCH_ALL = 'FETCH_ALL'
+
+export const CREATE_PARTNER = 'CREATE_PARTNER'
+export const UPDATE_PARTNER = 'UPDATE_PARTNER'
+export const DELETE_PARTNER = 'DELETE_PARTNER'
+export const FETCH_PARTNERS = 'FETCH_PARTNER'
+
+export const CREATE_EMPLOYEE = 'CREATE_EMPLOYEE'
+export const UPDATE_EMPLOYEE = 'UPDATE_EMPLOYEE'
+export const DELETE_EMPLOYEE = 'DELETE_EMPLOYEE'
+export const FETCH_EMPLOYEES = 'FETCH_EMPLOYEES'
+
+export const CREATE_TASK = 'CREATE_TASK'
+export const UPDATE_TASK = 'UPDATE_TASK'
+export const DELETE_TASK = 'DELETE_TASK'
+export const FETCH_TASKS = 'FETCH_TASKS'

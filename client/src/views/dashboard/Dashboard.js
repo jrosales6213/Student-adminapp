@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
   CAvatar,
@@ -23,6 +23,8 @@ import {
 } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
+import { useSelector, useDispatch } from 'react-redux'
+import { getStudents } from 'src/redux/actions/students'
 import CIcon from '@coreui/icons-react'
 import {
   cibCcAmex,
@@ -59,6 +61,12 @@ import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+  // const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   dispatch(getStudents())
+  // }, [])
+  const students = useSelector((state) => state.students)
 
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
@@ -189,7 +197,7 @@ const Dashboard = () => {
           <CRow>
             <CCol sm={5}>
               <h4 id="traffic" className="card-title mb-0">
-                Budget Spent
+                Budget Spent {students.length}
               </h4>
               <div className="small text-medium-emphasis">2021-2022 School Year</div>
             </CCol>

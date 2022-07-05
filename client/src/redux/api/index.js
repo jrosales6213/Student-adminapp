@@ -19,3 +19,8 @@ export const createEmployee = (newEmployee) => axios.post(`${url}/employees`, ne
 export const updateEmployee = (id, updatedEmployee) =>
   axios.patch(`${url}/employees/${id}`, updatedEmployee)
 export const deleteEmployee = (id) => axios.delete(`${url}/employees/${id}`)
+
+export const fetchTasks = () => axios.get(`${url}/tasks`)
+export const createTask = (newTask) => axios.post(`${url}/tasks`, newTask)
+export const updateTask = (id, updatedTask) => axios.patch(`${url}/tasks/${id}`, updatedTask)
+export const deleteTask = (id) => axios.delete(`${url}/tasks/${id}`)

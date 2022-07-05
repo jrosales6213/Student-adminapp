@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { getStudents, createStudent, updateStudent } from '../redux/actions/students'
+import { createStudent, updateStudent } from '../redux/actions/students'
 // import FileBase from 'react-file-base64';
 import {
   CButton,
@@ -37,11 +37,12 @@ const StudentForm = ({ currentId, setCurrentId }) => {
   const newStudent = useSelector((state) =>
     currentId ? state.students.find((student) => student._id === currentId) : null,
   )
+
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getStudents())
-  }, [currentId, dispatch])
+  // useEffect(() => {
+  //   dispatch(getStudents())
+  // }, [currentId, dispatch])
 
   useEffect(() => {
     if (newStudent) setPostData(newStudent)

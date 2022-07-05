@@ -38,9 +38,9 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getPartners())
-  }, [partnerId, dispatch])
+  // useEffect(() => {
+  //   dispatch(getPartners())
+  // }, [partnerId, dispatch])
 
   useEffect(() => {
     if (datapartners) setPartnerData(datapartners)

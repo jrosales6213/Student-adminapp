@@ -34,9 +34,9 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getEmployees())
-  }, [employeeId, dispatch])
+  // useEffect(() => {
+  //   dispatch(getEmployees())
+  // }, [employeeId, dispatch])
 
   useEffect(() => {
     if (newEmployee) setEmployeeInput(newEmployee)

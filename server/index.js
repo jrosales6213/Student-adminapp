@@ -21,7 +21,7 @@ app.use('/students', studentRoutes);
 app.use('/partners', partnerRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/events', eventRoutes);
-app.use('/staff', staffRoutes);
+app.use('/employees', staffRoutes);
 
 const PORT = process.env.PORT|| 5000;
 
