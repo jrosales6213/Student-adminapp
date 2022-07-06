@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteTask } from '../redux/actions/tasks'
+import { deleteEvent } from '../redux/actions/events'
 // import FileBase from 'react-file-base64';
 import {
   CCol,
@@ -19,28 +19,27 @@ import {
 
 import CIcon from '@coreui/icons-react'
 import { cilCheck, cilTrash } from '@coreui/icons'
-// import { updateTask, deleteTask } from 'src/redux/api'
-// import StudentTable from './StudentTable'
-function TaskRow({ tasks, setTaskId }) {
+
+function EventRow({ events, setEventId }) {
   // const [completed, setCompleted] = useState(true)
 
   const dispatch = useDispatch()
 
   return (
     <>
-      {tasks.map((task) => (
-        <CTableRow key={task._id}>
+      {events.map((event) => (
+        <CTableRow key={event._id}>
           <CTableDataCell>
-            {task.task.charAt(0).toUpperCase() + task.task.substring(1)}
+            {event.event.charAt(0).toUpperCase() + event.event.substring(1)}
           </CTableDataCell>
-          <CTableDataCell> {new Date(task.expectedby).toLocaleDateString()}</CTableDataCell>
+          <CTableDataCell> {new Date(event.date).toLocaleDateString()}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">
             <CCol>
               <CIcon
                 icon={cilCheck}
                 size={'lg'}
                 className="edit-button"
-                onClick={() => setTaskId(task._id)}
+                onClick={() => setEventId(event._id)}
               ></CIcon>
             </CCol>
 
@@ -51,7 +50,7 @@ function TaskRow({ tasks, setTaskId }) {
                 icon={cilTrash}
                 size={'lg'}
                 className="delete-button"
-                onClick={() => dispatch(deleteTask(task._id))}
+                onClick={() => dispatch(deleteEvent(event._id))}
               ></CIcon>
             </CCol>
           </CTableDataCell>
@@ -61,9 +60,8 @@ function TaskRow({ tasks, setTaskId }) {
   )
 }
 
-const TaskTable = ({ taskId, setTaskId, taskData, setTaskData }) => {
-  const [completed, setCompleted] = useState(true)
-  const tasks = useSelector((state) => state.tasks)
+const EventTable = ({ eventId, setEventId, eventData, setEventData }) => {
+  const events = useSelector((state) => state.events)
   return (
     <>
       <CRow className="mt-4">
@@ -71,26 +69,24 @@ const TaskTable = ({ taskId, setTaskId, taskData, setTaskData }) => {
           <CCol xs={12}>
             <CCard className="mb-2">
               <CCardHeader>
-                <strong>To Do List</strong>
+                <strong>Events</strong>
               </CCardHeader>
               <CCardBody>
                 <CTable hover responsive>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Task</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Due By</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Event</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Date</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    <TaskRow
-                      tasks={tasks}
-                      taskId={taskId}
-                      setTaskId={setTaskId}
-                      taskData={taskData}
-                      setTaskData={setTaskData}
-                      completed={completed}
-                      setCompleted={setCompleted}
+                    <EventRow
+                      events={events}
+                      eventId={eventId}
+                      setEventId={setEventId}
+                      eventData={eventData}
+                      setEventData={setEventData}
                     />
                   </CTableBody>
                 </CTable>
@@ -103,22 +99,18 @@ const TaskTable = ({ taskId, setTaskId, taskData, setTaskData }) => {
   )
 }
 
-TaskTable.propTypes = {
-  tasks: PropTypes.any,
-  taskId: PropTypes.any,
-  setTaskId: PropTypes.any,
-  taskData: PropTypes.any,
-  setTaskData: PropTypes.any,
-  completed: PropTypes.any,
-  setCompleted: PropTypes.any,
+EventTable.propTypes = {
+  events: PropTypes.any,
+  eventId: PropTypes.any,
+  setEventId: PropTypes.any,
+  eventData: PropTypes.any,
+  setEventData: PropTypes.any,
 }
-TaskRow.propTypes = {
-  tasks: PropTypes.any,
-  taskId: PropTypes.any,
-  setTaskId: PropTypes.any,
-  taskData: PropTypes.any,
-  setTaskData: PropTypes.any,
-  completed: PropTypes.any,
-  setCompleted: PropTypes.any,
+EventRow.propTypes = {
+  events: PropTypes.any,
+  eventId: PropTypes.any,
+  setEventId: PropTypes.any,
+  eventData: PropTypes.any,
+  setEventData: PropTypes.any,
 }
-export default TaskTable
+export default EventTable

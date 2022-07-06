@@ -7,6 +7,7 @@ import { cilClipboard, cilEducation, cilGroup, cilMoney } from '@coreui/icons'
 const WidgetsDropdown = () => {
   const students = useSelector((state) => state.students)
   const partners = useSelector((state) => state.partners)
+  const tasks = useSelector((state) => state.tasks)
 
   return (
     <CRow>
@@ -43,7 +44,7 @@ const WidgetsDropdown = () => {
           color="warning"
           icon={<CIcon icon={cilClipboard} height={24} />}
           title="Pending Task"
-          value="4"
+          value={tasks.length}
         />
       </CCol>
     </CRow>

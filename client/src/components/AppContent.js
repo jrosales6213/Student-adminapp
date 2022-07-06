@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
 import StudentForm from './StudentForm.js'
 import PartnerForm from './PartnerForm.js'
 import EmployeeForm from './EmployeeForm.js'
+import EventForm from './EventsForm'
 
 import routes from '../routes'
 import Dashboard from 'src/views/dashboard/Dashboard.js'
@@ -22,6 +23,7 @@ const AppContent = () => {
   const [partnerId, setPartnerId] = useState(0)
   const [employeeId, setEmployeeId] = useState(0)
   const [taskId, setTaskId] = useState(0)
+  const [eventId, setEventId] = useState(0)
 
   const dispatch = useDispatch()
 
@@ -37,6 +39,9 @@ const AppContent = () => {
   useEffect(() => {
     dispatch(getTasks())
   }, [taskId, dispatch])
+  useEffect(() => {
+    dispatch(getTasks())
+  }, [eventId, dispatch])
 
   return (
     <CContainer lg>
@@ -70,6 +75,7 @@ const AppContent = () => {
             element={<EmployeeForm employeeId={employeeId} setEmployeeId={setEmployeeId} />}
           />
           <Route path="/tasks" element={<TaskForm taskId={taskId} setTaskId={setTaskId} />} />
+          <Route path="/events" element={<EventForm eventId={eventId} setEventId={setEventId} />} />
         </Routes>
       </Suspense>
     </CContainer>
@@ -95,5 +101,9 @@ EmployeeForm.propTypes = {
 TaskForm.propTypes = {
   taskId: PropTypes.any,
   setTaskId: PropTypes.any,
+}
+EventForm.propTypes = {
+  eventId: PropTypes.any,
+  setEventId: PropTypes.any,
 }
 export default React.memo(AppContent)

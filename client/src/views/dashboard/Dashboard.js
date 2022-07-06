@@ -61,12 +61,9 @@ import WidgetsDropdown from '../widgets/WidgetsDropdown'
 
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
-  // const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(getStudents())
-  // }, [])
-  const students = useSelector((state) => state.students)
+  const tasks = useSelector((state) => state.tasks)
+  const events = useSelector((state) => state.events)
 
   const progressExample = [
     { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
@@ -197,7 +194,7 @@ const Dashboard = () => {
           <CRow>
             <CCol sm={5}>
               <h4 id="traffic" className="card-title mb-0">
-                Budget Spent {students.length}
+                Budget Spent
               </h4>
               <div className="small text-medium-emphasis">2021-2022 School Year</div>
             </CCol>
@@ -364,36 +361,24 @@ const Dashboard = () => {
             <CCardBody>
               <CRow>
                 <CTable align="middle" className="mb-0 border" hover responsive>
-                  {/* <CTableHead color="light">
+                  <CTableHead color="light">
                     <CTableRow>
-                      <CTableHeaderCell className="text-center">
-                        <CIcon icon={cilPeople} />
-                      </CTableHeaderCell>
-                      <CTableHeaderCell>User</CTableHeaderCell>
-                      <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
-                      <CTableHeaderCell>Usage</CTableHeaderCell>
-                      <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell>
-                      <CTableHeaderCell>Activity</CTableHeaderCell>
+                      <CTableHeaderCell className="text-center">Date</CTableHeaderCell>
+                      <CTableHeaderCell className="text-center">Event</CTableHeaderCell>
                     </CTableRow>
-                  </CTableHead> */}
+                  </CTableHead>
 
                   <CTableBody>
-                    <CTableRow>
-                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
-                      <CTableHeaderCell>Target Outing</CTableHeaderCell>
-                    </CTableRow>
-                    <CTableRow>
-                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
-                      <CTableHeaderCell>Speaker coming to school</CTableHeaderCell>
-                    </CTableRow>
-                    <CTableRow>
-                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
-                      <CTableHeaderCell>Baseball game outing</CTableHeaderCell>
-                    </CTableRow>
-                    <CTableRow>
-                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
-                      <CTableHeaderCell>No School </CTableHeaderCell>
-                    </CTableRow>
+                    {events.map((event) => (
+                      <CTableRow key={event._id}>
+                        <CTableHeaderCell className="text-center">
+                          {new Date(event.date).toLocaleDateString()}
+                        </CTableHeaderCell>
+                        <CTableHeaderCell className="text-center">
+                          {event.event.charAt(0).toUpperCase() + event.event.substring(1)}
+                        </CTableHeaderCell>
+                      </CTableRow>
+                    ))}
                   </CTableBody>
                 </CTable>
               </CRow>
@@ -406,23 +391,24 @@ const Dashboard = () => {
             <CCardBody>
               <CRow>
                 <CTable align="middle" className="mb-0 border" hover responsive>
+                  <CTableHead color="light">
+                    <CTableRow>
+                      <CTableHeaderCell className="text-center">Task</CTableHeaderCell>
+                      <CTableHeaderCell className="text-center">Due Date</CTableHeaderCell>
+                    </CTableRow>
+                  </CTableHead>
                   <CTableBody>
-                    <CTableRow>
-                      <CTableHeaderCell>3-2-2022</CTableHeaderCell>
-                      <CTableHeaderCell>Call parents for meeting</CTableHeaderCell>
-                    </CTableRow>
-                    <CTableRow>
-                      <CTableHeaderCell>4-15-2022</CTableHeaderCell>
-                      <CTableHeaderCell>Timesheets are due</CTableHeaderCell>
-                    </CTableRow>
-                    <CTableRow>
-                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
-                      <CTableHeaderCell>Send email to coach</CTableHeaderCell>
-                    </CTableRow>
-                    <CTableRow>
-                      <CTableHeaderCell>4-12-2022</CTableHeaderCell>
-                      <CTableHeaderCell>Purchase materials for garden</CTableHeaderCell>
-                    </CTableRow>
+                    {tasks.map((task) => (
+                      <CTableRow key={task._id}>
+                        <CTableHeaderCell>
+                          {task.task.charAt(0).toUpperCase() + task.task.substring(1)}
+                        </CTableHeaderCell>
+
+                        <CTableHeaderCell className="text-center">
+                          {new Date(task.expectedby).toLocaleDateString()}
+                        </CTableHeaderCell>
+                      </CTableRow>
+                    ))}
                   </CTableBody>
                 </CTable>
               </CRow>

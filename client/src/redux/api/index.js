@@ -24,3 +24,8 @@ export const fetchTasks = () => axios.get(`${url}/tasks`)
 export const createTask = (newTask) => axios.post(`${url}/tasks`, newTask)
 export const updateTask = (id, updatedTask) => axios.patch(`${url}/tasks/${id}`, updatedTask)
 export const deleteTask = (id) => axios.delete(`${url}/tasks/${id}`)
+
+export const fetchEvents = () => axios.get(`${url}/events`)
+export const createEvent = (newEvent) => axios.post(`${url}/events`, newEvent)
+export const updateEvent = (id, updatedEvent) => axios.patch(`${url}/events/${id}`, updatedEvent)
+export const deleteEvent = (id) => axios.delete(`${url}/events/${id}`)

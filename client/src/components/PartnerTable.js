@@ -79,7 +79,7 @@ const PartnerTable = ({
               <strong>Business Partners</strong>
             </CCardHeader>
             <CCardBody>
-              <CTable>
+              <CTable hover responsive>
                 <CTableHead>
                   <CTableRow>
                     <CTableHeaderCell scope="col">Company</CTableHeaderCell>

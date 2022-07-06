@@ -17,3 +17,8 @@ export const CREATE_TASK = 'CREATE_TASK'
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const DELETE_TASK = 'DELETE_TASK'
 export const FETCH_TASKS = 'FETCH_TASKS'
+
+export const CREATE_EVENT = 'CREATE_EVENT'
+export const UPDATE_EVENT = 'UPDATE_EVENT'
+export const DELETE_EVENT = 'DELETE_EVENT'
+export const FETCH_EVENTS = 'FETCH_EVENTS'

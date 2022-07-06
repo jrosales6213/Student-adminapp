@@ -2,32 +2,18 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTask, createTask } from '../redux/actions/tasks.js'
+
 // import FileBase from 'react-file-base64';
+
 import {
   CButton,
-  CModal,
-  CModalHeader,
-  CModalTitle,
-  CModalBody,
-  CModalFooter,
-  CCol,
   CForm,
   CFormInput,
-  CFormFeedback,
-  CFormLabel,
-  CFormSelect,
   CRow,
-  CContainer,
   CCard,
   CCardBody,
   CCardHeader,
-  CCardFooter,
   CInputGroup,
-  CTable,
-  CTableBody,
-  CTableHead,
-  CTableRow,
-  CTableHeaderCell,
 } from '@coreui/react'
 import TaskTable from './TaskTable'
 // import StudentTable from './StudentTable'
@@ -80,14 +66,18 @@ const TaskForm = ({ taskId, setTaskId }) => {
                   id="task"
                   value={taskData.task}
                   onChange={(e) => setTaskData({ ...taskData, task: e.target.value })}
+                  required
                 />
                 <CFormInput
                   placeholder="Due Date"
-                  type="text"
+                  type="date"
                   id="date"
                   value={taskData.expectedby}
                   onChange={(e) => setTaskData({ ...taskData, expectedby: e.target.value })}
+                  required
                 />
+
+                {/* <DatePicker /> */}
 
                 <CButton type="submit" color="primary" id="button-addon2">
                   +

@@ -71,7 +71,7 @@ const StudentTable = ({ currentId, setCurrentId, postData, setPostData, setVisib
               <strong>Students</strong>
             </CCardHeader>
             <CCardBody>
-              <CTable>
+              <CTable hover responsive>
                 <CTableHead>
                   <CTableRow>
                     <CTableHeaderCell scope="col">First Name</CTableHeaderCell>
