@@ -9,6 +9,10 @@ const partnerSchema = new Schema({
     city: String, 
     state: String, 
     comment: String,
+    createdAt: {
+        type: Date,
+        default: new Date(),
+   }
 })
 
 const Partner = mongoose.model('JobSite', partnerSchema)

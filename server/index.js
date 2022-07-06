@@ -8,6 +8,7 @@ import partnerRoutes from './routes/partners.js';
 import taskRoutes from './routes/tasks.js';
 import eventRoutes from './routes/events.js';
 import staffRoutes from './routes/staff.js';
+import payrollRoutes from './routes/payroll.js';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/partners', partnerRoutes);
 app.use('/tasks', taskRoutes);
 app.use('/events', eventRoutes);
 app.use('/employees', staffRoutes);
+app.use('/payrolls', payrollRoutes);
 
 const PORT = process.env.PORT|| 5000;
 
