@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 const {Schema} = mongoose;
 
-const budgetSchema = new Schema ({
-    title: String,
+const payrollSchema = new Schema ({
+    pay_period: String,
     amount: Number,
     createdAt: {
        type: Date,
@@ -11,6 +11,6 @@ const budgetSchema = new Schema ({
 })
 
 
-var Budget= mongoose.model('Budget', budgetSchema);
+var Payroll= mongoose.model('Payroll', payrollSchema);
 
-export default Budget;
+export default Payroll;

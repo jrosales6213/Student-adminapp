@@ -22,6 +22,8 @@ export const getPartner = async (req, res) => {
         res.status(404).json({ message: error.message })
     }
 }
+
+
 export const createPartner = async (req, res) => {
     const {company, manager, phone, address, city, state, comment} = req.body;
     const newPartner = new Partner ({company, manager, phone, address, city, state, comment});

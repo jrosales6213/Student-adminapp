@@ -1,13 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import Payroll from '../models/budget_model.js';
+import Payroll from '../models/payroll_model.js';
 
 const router = express.Router();
 
 export const getPayrolls = async (req, res) => {
     try {
-        const getPayroll = await Event.find();
+        const getPayroll = await Payroll.find();
         res.status(200).json(getPayroll);
     } catch (error) {
         res.status(404).json({message: error.message})
