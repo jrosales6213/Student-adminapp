@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 import {
   CAvatar,
@@ -58,8 +59,10 @@ import avatar6 from 'src/assets/images/avatars/6.jpg'
 
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
+import { checkPropTypes } from 'prop-types'
+import { prototype } from 'simplebar-react'
 
-const Dashboard = () => {
+const Dashboard = ({ budgets }) => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   const tasks = useSelector((state) => state.tasks)
@@ -188,7 +191,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <WidgetsDropdown />
+      <WidgetsDropdown budgets={budgets} />
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
@@ -418,6 +421,14 @@ const Dashboard = () => {
       </CRow>
     </>
   )
+}
+
+Dashboard.propTypes = {
+  budgets: PropTypes.any,
+}
+
+WidgetsDropdown.propTypes = {
+  budgets: PropTypes.any,
 }
 
 export default Dashboard

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteEvent } from '../redux/actions/events'
+import { deletePayroll } from '../redux/actions/payrolls'
 // import FileBase from 'react-file-base64';
 import {
   CCol,
@@ -19,27 +19,29 @@ import {
 
 import CIcon from '@coreui/icons-react'
 import { cilCheck, cilTrash } from '@coreui/icons'
-
-function EventRow({ events, setEventId }) {
+// import { updateTask, deleteTask } from 'src/redux/api'
+// import StudentTable from './StudentTable'
+function PayrollRow({ payrolls, setPayrollId }) {
   // const [completed, setCompleted] = useState(true)
 
   const dispatch = useDispatch()
 
   return (
     <>
-      {events.map((event) => (
-        <CTableRow key={event._id}>
+      {payrolls.map((payroll) => (
+        <CTableRow key={payroll._id}>
           <CTableDataCell>
-            {event.event.charAt(0).toUpperCase() + event.event.substring(1)}
+            {payroll.pay_period}
+            {/* {payroll.task.charAt(0).toUpperCase() + task.task.substring(1)} */}
           </CTableDataCell>
-          <CTableDataCell> {new Date(event.date).toLocaleDateString()}</CTableDataCell>
+          <CTableDataCell> {payroll.amount}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">
             <CCol>
               <CIcon
                 icon={cilCheck}
                 size={'lg'}
                 className="edit-button"
-                onClick={() => setEventId(event._id)}
+                onClick={() => setPayrollId(payroll._id)}
               ></CIcon>
             </CCol>
 
@@ -50,7 +52,7 @@ function EventRow({ events, setEventId }) {
                 icon={cilTrash}
                 size={'lg'}
                 className="delete-button"
-                onClick={() => dispatch(deleteEvent(event._id))}
+                onClick={() => dispatch(deletePayroll(payroll._id))}
               ></CIcon>
             </CCol>
           </CTableDataCell>
@@ -60,9 +62,9 @@ function EventRow({ events, setEventId }) {
   )
 }
 
-const EventTable = ({ eventId, setEventId, eventData, setEventData }) => {
-  const events = useSelector((state) => state.events)
-
+const PayrollTable = ({ setPayrollId }) => {
+  //   const [completed, setCompleted] = useState(true)
+  const payrolls = useSelector((state) => state.payrolls)
   return (
     <>
       <CRow className="mt-4">
@@ -70,25 +72,19 @@ const EventTable = ({ eventId, setEventId, eventData, setEventData }) => {
           <CCol xs={12}>
             <CCard className="mb-2">
               <CCardHeader>
-                <strong>Events</strong>
+                <strong>Pay Period</strong>
               </CCardHeader>
               <CCardBody>
                 <CTable hover responsive>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Event</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Date</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Task</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Due By</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    <EventRow
-                      events={events}
-                      eventId={eventId}
-                      setEventId={setEventId}
-                      eventData={eventData}
-                      setEventData={setEventData}
-                    />
+                    <PayrollRow payrolls={payrolls} setPayrollId={setPayrollId} />
                   </CTableBody>
                 </CTable>
               </CCardBody>
@@ -100,18 +96,14 @@ const EventTable = ({ eventId, setEventId, eventData, setEventData }) => {
   )
 }
 
-EventTable.propTypes = {
-  events: PropTypes.any,
-  eventId: PropTypes.any,
-  setEventId: PropTypes.any,
-  eventData: PropTypes.any,
-  setEventData: PropTypes.any,
+PayrollTable.propTypes = {
+  tasks: PropTypes.any,
+  setPayrollId: PropTypes.any,
+  payrollData: PropTypes.any,
+  setPayrollData: PropTypes.any,
 }
-EventRow.propTypes = {
-  events: PropTypes.any,
-  eventId: PropTypes.any,
-  setEventId: PropTypes.any,
-  eventData: PropTypes.any,
-  setEventData: PropTypes.any,
+PayrollRow.propTypes = {
+  payrolls: PropTypes.any,
+  setPayrollId: PropTypes.any,
 }
-export default EventTable
+export default PayrollTable

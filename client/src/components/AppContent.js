@@ -6,6 +6,9 @@ import { getStudents } from '../redux/actions/students'
 import { getPartners } from 'src/redux/actions/partners.js'
 import { getEmployees } from 'src/redux/actions/employees'
 import { getTasks } from 'src/redux/actions/tasks'
+import { getBudgets } from 'src/redux/actions/budgets'
+import { getPayrolls } from 'src/redux/actions/payrolls'
+import { getEvents } from 'src/redux/actions/events'
 
 import PropTypes from 'prop-types'
 
@@ -13,6 +16,7 @@ import StudentForm from './StudentForm.js'
 import PartnerForm from './PartnerForm.js'
 import EmployeeForm from './EmployeeForm.js'
 import EventForm from './EventsForm'
+import BudgetForm from './BudgetForm'
 
 import routes from '../routes'
 import Dashboard from 'src/views/dashboard/Dashboard.js'
@@ -24,6 +28,8 @@ const AppContent = () => {
   const [employeeId, setEmployeeId] = useState(0)
   const [taskId, setTaskId] = useState(0)
   const [eventId, setEventId] = useState(0)
+  const [budgetId, setBudgetId] = useState(0)
+  const [payrollId, setPayrollId] = useState(0)
 
   const dispatch = useDispatch()
 
@@ -37,17 +43,28 @@ const AppContent = () => {
     dispatch(getEmployees())
   }, [employeeId, dispatch])
   useEffect(() => {
+    dispatch(getEvents())
+  }, [eventId, dispatch])
+  useEffect(() => {
     dispatch(getTasks())
   }, [taskId, dispatch])
   useEffect(() => {
-    dispatch(getTasks())
-  }, [eventId, dispatch])
+    dispatch(getPayrolls())
+  }, [payrollId, dispatch])
+  useEffect(() => {
+    dispatch(getBudgets())
+  }, [budgetId, dispatch])
+
+  const budgets = useSelector((state) => state.budgets)
+
+  // const title = budgets.map((item) => item.title)
+  // const amount = budgets.map((item) => item.amount)
 
   return (
     <CContainer lg>
       <Suspense fallback={<CSpinner color="primary" />}>
         <Routes>
-          {routes.map((route, idx) => {
+          {/* {routes.map((route, idx) => {
             return (
               route.element && (
                 <Route
@@ -59,9 +76,9 @@ const AppContent = () => {
                 />
               )
             )
-          })}
+          })} */}
           <Route path="/" element={<Navigate to="dashboard" replace />} />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          <Route path="/dashboard" element={<Dashboard budgets={budgets} />} />
           <Route
             path="/students"
             element={<StudentForm currentId={currentId} setCurrentId={setCurrentId} />}
@@ -76,6 +93,10 @@ const AppContent = () => {
           />
           <Route path="/tasks" element={<TaskForm taskId={taskId} setTaskId={setTaskId} />} />
           <Route path="/events" element={<EventForm eventId={eventId} setEventId={setEventId} />} />
+          <Route
+            path="/budgets"
+            element={<BudgetForm budgetId={budgetId} setBudgetId={setBudgetId} budgets={budgets} />}
+          />
         </Routes>
       </Suspense>
     </CContainer>
@@ -83,10 +104,11 @@ const AppContent = () => {
 }
 
 // export default AppContent
+Dashboard.propTypes = {
+  budgets: PropTypes.any,
+}
 
 StudentForm.propTypes = {
-  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setCurrentId: PropTypes.any,
   currentId: PropTypes.any,
 }
@@ -105,5 +127,10 @@ TaskForm.propTypes = {
 EventForm.propTypes = {
   eventId: PropTypes.any,
   setEventId: PropTypes.any,
+}
+BudgetForm.propTypes = {
+  budgetId: PropTypes.any,
+  setBudgetId: PropTypes.any,
+  budgets: PropTypes.any,
 }
 export default React.memo(AppContent)

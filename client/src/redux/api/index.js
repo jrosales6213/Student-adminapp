@@ -29,3 +29,15 @@ export const fetchEvents = () => axios.get(`${url}/events`)
 export const createEvent = (newEvent) => axios.post(`${url}/events`, newEvent)
 export const updateEvent = (id, updatedEvent) => axios.patch(`${url}/events/${id}`, updatedEvent)
 export const deleteEvent = (id) => axios.delete(`${url}/events/${id}`)
+
+export const fetchBudgets = () => axios.get(`${url}/budgets`)
+export const createBudget = (newBudget) => axios.post(`${url}/budgets`, newBudget)
+export const updateBudget = (id, updatedBudget) =>
+  axios.patch(`${url}/budgets/${id}`, updatedBudget)
+export const deleteBudget = (id) => axios.delete(`${url}/budgets/${id}`)
+
+export const fetchPayrolls = () => axios.get(`${url}/payrolls`)
+export const createPayroll = (newPayroll) => axios.post(`${url}/payrolls`, newPayroll)
+export const updatePayroll = (id, updatedPayroll) =>
+  axios.patch(`${url}/payrolls/${id}`, updatedPayroll)
+export const deletePayroll = (id) => axios.delete(`${url}/payrolls/${id}`)

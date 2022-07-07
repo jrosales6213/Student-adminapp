@@ -186,7 +186,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
                 </CButton>
               </CForm>
             </CModalBody>
-            <CModalFooter></CModalFooter>
           </CModal>
         </CCol>
       </CRow>
