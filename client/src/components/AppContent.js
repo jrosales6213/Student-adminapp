@@ -95,7 +95,15 @@ const AppContent = () => {
           <Route path="/events" element={<EventForm eventId={eventId} setEventId={setEventId} />} />
           <Route
             path="/budgets"
-            element={<BudgetForm budgetId={budgetId} setBudgetId={setBudgetId} budgets={budgets} />}
+            element={
+              <BudgetForm
+                budgetId={budgetId}
+                setBudgetId={setBudgetId}
+                budgets={budgets}
+                payrollId={payrollId}
+                setPayrollId={setPayrollId}
+              />
+            }
           />
         </Routes>
       </Suspense>

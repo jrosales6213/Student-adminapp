@@ -25,13 +25,12 @@ import CIcon from '@coreui/icons-react'
 // import EventTable from './EventTable'
 import PayrollForm from './PayrollForm'
 
-const BudgetForm = ({ budgetId, setBudgetId, budgets }) => {
+const BudgetForm = ({ budgetId, setBudgetId, budgets, payrollId, setPayrollId }) => {
   const [visible, setVisible] = useState(false)
-  const [findAmount, setFindAmount] = useState('')
 
   const [budgetData, setBudgetData] = useState({
-    title: PropTypes.string,
-    amount: PropTypes.number,
+    title: PropTypes.any,
+    amount: PropTypes.any,
   })
 
   const newBudget = useSelector((state) =>
@@ -76,12 +75,10 @@ const BudgetForm = ({ budgetId, setBudgetId, budgets }) => {
         <CCol xs={4}>
           <CListGroup>
             {budgets.map((budget) => (
-              <>
-                <CListGroupItem key={budget._id}>
-                  <span>You have </span>
-                  {dollarUS.format(budget.amount)} <span>for</span> {budget.title}
-                </CListGroupItem>
-              </>
+              <CListGroupItem key={budget._id}>
+                {dollarUS.format(budget.amount) + ' received for the '}
+                {budget.title}
+              </CListGroupItem>
             ))}
           </CListGroup>
 
@@ -103,10 +100,10 @@ const BudgetForm = ({ budgetId, setBudgetId, budgets }) => {
                     onChange={(e) => setBudgetData({ ...budgetData, title: e.target.value })}
                   >
                     <option>Choose...</option>
-                    <option value={budgetData.title}>2022-2023 School Year</option>
-                    <option value={budgetData.title}>2023-2024 School Year</option>
-                    <option value={budgetData.title}>2024-2025 School Year</option>
-                    <option value={budgetData.title}>2025-2026 School Year</option>
+                    <option>2022-2023 School Year</option>
+                    <option>2023-2024 School Year</option>
+                    <option>2024-2025 School Year</option>
+                    <option>2025-2026 School Year</option>
                   </CFormSelect>
                 </CCol>
                 <CCol md={12}>
@@ -132,7 +129,12 @@ const BudgetForm = ({ budgetId, setBudgetId, budgets }) => {
       </CRow>
       <CRow>
         <CCol>
-          <PayrollForm budgetId={budgetId} setBudgetId={setBudgetId} />
+          <PayrollForm
+            budgetId={budgetId}
+            setBudgetId={setBudgetId}
+            payrollId={payrollId}
+            setPayrollId={setPayrollId}
+          />
         </CCol>
       </CRow>
     </>
@@ -143,16 +145,14 @@ BudgetForm.propTypes = {
   budgetId: PropTypes.any,
   setBudgetId: PropTypes.any,
   budgets: PropTypes.any,
+  payrollId: PropTypes.any,
+  setPayrollId: PropTypes.any,
 }
 PayrollForm.propTypes = {
   budgetId: PropTypes.any,
   setBudgetId: PropTypes.any,
+  payrollId: PropTypes.any,
+  setPayrollId: PropTypes.any,
 }
-// EventTable.prototype = {
-//   setEventId: PropTypes.any,
-//   eventId: PropTypes.any,
-//   eventData: PropTypes.any,
-//   setEventData: PropTypes.any,
-// }
 
 export default BudgetForm

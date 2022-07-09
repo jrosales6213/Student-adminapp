@@ -76,7 +76,7 @@ const PayrollForm = ({ payrollId, setPayrollId }) => {
                   required
                 />
 
-                <CButton type="submit" color="primary" id="button-addon2">
+                <CButton type="submit" color="primary">
                   +
                 </CButton>
               </CInputGroup>

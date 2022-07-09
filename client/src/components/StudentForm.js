@@ -40,10 +40,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
 
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   dispatch(getStudents())
-  // }, [currentId, dispatch])
-
   useEffect(() => {
     if (newStudent) setPostData(newStudent)
   }, [newStudent])

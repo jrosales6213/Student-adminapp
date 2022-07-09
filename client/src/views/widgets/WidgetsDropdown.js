@@ -9,11 +9,18 @@ const WidgetsDropdown = ({ budgets }) => {
   const students = useSelector((state) => state.students)
   const partners = useSelector((state) => state.partners)
   const tasks = useSelector((state) => state.tasks)
+  const payrolls = useSelector((state) => state.payrolls)
   // const budgets = useSelector((state) => state.budgets)
   // const budgetValue= budgets.filter((item) => item.title === 'dsfdfsd').map((item) => item.amount)
 
   const title = budgets.map((budget) => budget.title)
   const amount = budgets.map((budget) => budget.amount)
+  let initialValue = 0
+  const totalPayrolls = payrolls
+    .map((payroll) => payroll.amount)
+    .reduce((previous, current) => previous + current, initialValue)
+
+  const remainingAmount = amount - totalPayrolls
 
   let dollarUS = Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -38,7 +45,7 @@ const WidgetsDropdown = ({ budgets }) => {
           color="success"
           icon={<CIcon icon={cilMoney} height={24} />}
           title={title}
-          value={dollarUS.format(amount)}
+          value={dollarUS.format(remainingAmount) + ' Remaining'}
         />
       </CCol>
       <CCol xs={6}>
