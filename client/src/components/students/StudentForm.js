@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { createStudent, updateStudent } from '../redux/actions/students'
+import { createStudent, updateStudent } from 'src/redux/actions/students'
 // import FileBase from 'react-file-base64';
 import {
   CButton,
@@ -9,7 +9,6 @@ import {
   CModalHeader,
   CModalTitle,
   CModalBody,
-  CModalFooter,
   CCol,
   CForm,
   CFormInput,
@@ -31,7 +30,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
     state: PropTypes.string,
     mobile: PropTypes.string,
     email: PropTypes.string,
-    // jobsite: PropTypes.object,
   })
 
   const newStudent = useSelector((state) =>
@@ -39,6 +37,8 @@ const StudentForm = ({ currentId, setCurrentId }) => {
   )
 
   const dispatch = useDispatch()
+
+  const students = useSelector((state) => state.students)
 
   useEffect(() => {
     if (newStudent) setPostData(newStudent)
@@ -55,7 +55,6 @@ const StudentForm = ({ currentId, setCurrentId }) => {
       state: '',
       mobile: '',
       email: '',
-      // jobsite: '',
     })
   }
 
@@ -73,6 +72,26 @@ const StudentForm = ({ currentId, setCurrentId }) => {
       console.log('CurrentId already exists')
     }
   }
+  const DefaultLayOut = () => {
+    return <h3 className="text-center text-secondary m-4">No students added</h3>
+  }
+
+  // const TestingL = () => {
+  //   if (students) {
+  //     return (
+  //       <StudentTable
+  //         setCurrentId={setCurrentId}
+  //         currentId={currentId}
+  //         postData={postData}
+  //         setPostData={setPostData}
+  //         setVisible={setVisible}
+  //         visible={visible}
+  //         students={students}
+  //       />
+  //     )
+  //   }
+  //   return { DefaultLayOut }
+  // }
 
   return (
     <>
@@ -187,14 +206,19 @@ const StudentForm = ({ currentId, setCurrentId }) => {
       </CRow>
       <CRow>
         <CCol>
-          <StudentTable
-            setCurrentId={setCurrentId}
-            currentId={currentId}
-            postData={postData}
-            setPostData={setPostData}
-            setVisible={setVisible}
-            visible={visible}
-          />
+          {students.length === 0 ? (
+            <DefaultLayOut />
+          ) : (
+            <StudentTable
+              setCurrentId={setCurrentId}
+              currentId={currentId}
+              postData={postData}
+              setPostData={setPostData}
+              setVisible={setVisible}
+              visible={visible}
+              students={students}
+            />
+          )}
         </CCol>
       </CRow>
     </>
@@ -202,25 +226,15 @@ const StudentForm = ({ currentId, setCurrentId }) => {
 }
 
 StudentTable.propTypes = {
-  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setCurrentId: PropTypes.any,
   currentId: PropTypes.any,
   postData: PropTypes.any,
   setPostData: PropTypes.any,
   setVisible: PropTypes.any,
   visible: PropTypes.any,
+  students: PropTypes.any,
 }
-// StudentRow.propTypes = {
-//   post: PropTypes.object,
-//   currentId: PropTypes.number,
-//   setCurrentId: PropTypes.number,
-//   currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-//   setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-//   postData: PropTypes.object,
-//   setPostData: PropTypes.object,
-//   setVisible: PropTypes.bool,
-// }
+
 StudentForm.propTypes = {
   setCurrentId: PropTypes.any,
   currentId: PropTypes.any,

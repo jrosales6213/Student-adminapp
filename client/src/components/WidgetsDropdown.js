@@ -10,8 +10,6 @@ const WidgetsDropdown = ({ budgets }) => {
   const partners = useSelector((state) => state.partners)
   const tasks = useSelector((state) => state.tasks)
   const payrolls = useSelector((state) => state.payrolls)
-  // const budgets = useSelector((state) => state.budgets)
-  // const budgetValue= budgets.filter((item) => item.title === 'dsfdfsd').map((item) => item.amount)
 
   const title = budgets.map((budget) => budget.title)
   const amount = budgets.map((budget) => budget.amount)
@@ -29,23 +27,12 @@ const WidgetsDropdown = ({ budgets }) => {
   return (
     <CRow>
       <CCol xs={6}>
-        {/* {budgets.map((budget) => (
-          <CWidgetStatsF
-            key={budget._id}
-            className="mb-3"
-            color="success"
-            icon={<CIcon icon={cilMoney} height={24} />}
-            title={budget.title}
-            value={`$` + budget.amount}
-          />
-        ))} */}
-
         <CWidgetStatsF
           className="mb-3"
           color="success"
           icon={<CIcon icon={cilMoney} height={24} />}
-          title={title}
-          value={dollarUS.format(remainingAmount) + ' Remaining'}
+          title="Balance"
+          value={dollarUS.format(remainingAmount)}
         />
       </CCol>
       <CCol xs={6}>

@@ -13,14 +13,13 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import './StudentTable.css'
+import './partner.css'
 
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilTrash } from '@coreui/icons'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { deletePartner } from '../redux/actions/partners'
-// import DeleteModal from './DeleteModal'
+import { deletePartner } from 'src/redux/actions/partners'
 
 function PartnerRow({ post, setPartnerId, setVisible, visible }) {
   const dispatch = useDispatch()
@@ -109,8 +108,6 @@ const PartnerTable = ({
 }
 
 PartnerTable.propTypes = {
-  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setPartnerId: PropTypes.any,
   partnerId: PropTypes.any,
   partnerData: PropTypes.any,
@@ -120,8 +117,6 @@ PartnerTable.propTypes = {
 }
 PartnerRow.propTypes = {
   post: PropTypes.any,
-  // currentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  // setCurrentId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setPartnerId: PropTypes.any,
   partnerId: PropTypes.any,
   partnerData: PropTypes.any,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { updatePayroll, createPayroll } from '../redux/actions/payrolls.js'
+import { updatePayroll, createPayroll } from 'src/redux/actions/payrolls.js'
 
 import {
   CButton,

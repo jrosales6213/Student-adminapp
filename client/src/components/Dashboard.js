@@ -14,7 +14,7 @@ import {
 } from '@coreui/react'
 import { CChartLine } from '@coreui/react-chartjs'
 import { useSelector } from 'react-redux'
-import WidgetsDropdown from '../widgets/WidgetsDropdown'
+import WidgetsDropdown from './WidgetsDropdown'
 
 const Dashboard = ({ budgets }) => {
   const tasks = useSelector((state) => state.tasks)

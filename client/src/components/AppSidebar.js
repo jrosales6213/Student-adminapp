@@ -1,18 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { CImage, CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
-import avatar1 from 'src/assets/brand/bridgeslogo.png'
-import bridgesshade from 'src/assets/brand/bridgesshade.png'
-import CIcon from '@coreui/icons-react'
-
+import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import { AppSidebarNav } from './AppSidebarNav'
-
-import { logoNegative } from 'src/assets/brand/logo-negative'
-import { sygnet } from 'src/assets/brand/sygnet'
-
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
+import './AppSidebar.css'
 
 // sidebar nav config
 import navigation from '../_nav'
@@ -32,9 +24,7 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarBrand className="d-none d-md-flex" to="/">
-        <p>Arc</p>
-        {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
-        <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
+        <h2 className="navbar-header">BTA Studio</h2>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

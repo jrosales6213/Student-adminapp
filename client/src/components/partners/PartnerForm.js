@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { getPartners, createPartner, updatePartner } from '../redux/actions/partners'
+import { createPartner, updatePartner } from 'src/redux/actions/partners'
 // import FileBase from 'react-file-base64';
 import {
   CButton,
@@ -13,7 +13,6 @@ import {
   CCol,
   CForm,
   CFormInput,
-  CFormFeedback,
   CFormLabel,
   CFormSelect,
   CRow,
@@ -37,10 +36,6 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
   )
 
   const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(getPartners())
-  // }, [partnerId, dispatch])
 
   useEffect(() => {
     if (datapartners) setPartnerData(datapartners)

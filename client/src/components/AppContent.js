@@ -12,15 +12,15 @@ import { getEvents } from 'src/redux/actions/events'
 
 import PropTypes from 'prop-types'
 
-import StudentForm from './StudentForm.js'
-import PartnerForm from './PartnerForm.js'
-import EmployeeForm from './EmployeeForm.js'
-import EventForm from './EventsForm'
-import BudgetForm from './BudgetForm'
+import StudentForm from './students/StudentForm'
+import PartnerForm from './partners/PartnerForm.js'
+import EmployeeForm from './employees/EmployeeForm.js'
+import EventForm from './events/EventsForm'
+import BudgetForm from './payroll/BudgetForm'
+import TaskForm from './tasks/TaskForm.js'
 
-import routes from '../routes'
-import Dashboard from 'src/views/dashboard/Dashboard.js'
-import TaskForm from './TaskForm.js'
+// import routes from '../routes'
+import Dashboard from './Dashboard'
 
 const AppContent = () => {
   const [currentId, setCurrentId] = useState(0)
@@ -56,9 +56,6 @@ const AppContent = () => {
   }, [budgetId, dispatch])
 
   const budgets = useSelector((state) => state.budgets)
-
-  // const title = budgets.map((item) => item.title)
-  // const amount = budgets.map((item) => item.amount)
 
   return (
     <CContainer lg>
@@ -111,7 +108,6 @@ const AppContent = () => {
   )
 }
 
-// export default AppContent
 Dashboard.propTypes = {
   budgets: PropTypes.any,
 }

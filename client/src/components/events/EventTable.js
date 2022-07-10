@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteEvent } from '../redux/actions/events'
+import { deleteEvent } from 'src/redux/actions/events'
 // import FileBase from 'react-file-base64';
 import {
   CCol,
@@ -21,8 +21,6 @@ import CIcon from '@coreui/icons-react'
 import { cilCheck, cilTrash } from '@coreui/icons'
 
 function EventRow({ events, setEventId }) {
-  // const [completed, setCompleted] = useState(true)
-
   const dispatch = useDispatch()
 
   return (

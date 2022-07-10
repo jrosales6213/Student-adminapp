@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateEvent, createEvent } from '../redux/actions/events.js'
+import { updateEvent, createEvent } from 'src/redux/actions/events.js'
 
 import {
   CButton,

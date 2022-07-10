@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { deletePayroll } from '../redux/actions/payrolls'
+import { deleteTask } from 'src/redux/actions/tasks'
 // import FileBase from 'react-file-base64';
 import {
   CCol,
@@ -19,29 +19,24 @@ import {
 
 import CIcon from '@coreui/icons-react'
 import { cilCheck, cilTrash } from '@coreui/icons'
-// import { updateTask, deleteTask } from 'src/redux/api'
-// import StudentTable from './StudentTable'
-function PayrollRow({ payrolls, setPayrollId }) {
-  // const [completed, setCompleted] = useState(true)
-
+function TaskRow({ tasks, setTaskId }) {
   const dispatch = useDispatch()
 
   return (
     <>
-      {payrolls.map((payroll) => (
-        <CTableRow key={payroll._id}>
+      {tasks.map((task) => (
+        <CTableRow key={task._id}>
           <CTableDataCell>
-            {payroll.pay_period}
-            {/* {payroll.task.charAt(0).toUpperCase() + task.task.substring(1)} */}
+            {task.task.charAt(0).toUpperCase() + task.task.substring(1)}
           </CTableDataCell>
-          <CTableDataCell> {payroll.amount}</CTableDataCell>
+          <CTableDataCell> {new Date(task.expectedby).toLocaleDateString()}</CTableDataCell>
           <CTableDataCell className="d-flex justify-content-center">
             <CCol>
               <CIcon
                 icon={cilCheck}
                 size={'lg'}
                 className="edit-button"
-                onClick={() => setPayrollId(payroll._id)}
+                onClick={() => setTaskId(task._id)}
               ></CIcon>
             </CCol>
 
@@ -52,7 +47,7 @@ function PayrollRow({ payrolls, setPayrollId }) {
                 icon={cilTrash}
                 size={'lg'}
                 className="delete-button"
-                onClick={() => dispatch(deletePayroll(payroll._id))}
+                onClick={() => dispatch(deleteTask(task._id))}
               ></CIcon>
             </CCol>
           </CTableDataCell>
@@ -62,9 +57,9 @@ function PayrollRow({ payrolls, setPayrollId }) {
   )
 }
 
-const PayrollTable = ({ setPayrollId }) => {
-  //   const [completed, setCompleted] = useState(true)
-  const payrolls = useSelector((state) => state.payrolls)
+const TaskTable = ({ taskId, setTaskId, taskData, setTaskData }) => {
+  const [completed, setCompleted] = useState(true)
+  const tasks = useSelector((state) => state.tasks)
   return (
     <>
       <CRow className="mt-4">
@@ -72,7 +67,7 @@ const PayrollTable = ({ setPayrollId }) => {
           <CCol xs={12}>
             <CCard className="mb-2">
               <CCardHeader>
-                <strong>Pay Period</strong>
+                <strong>To Do List</strong>
               </CCardHeader>
               <CCardBody>
                 <CTable hover responsive>
@@ -84,7 +79,15 @@ const PayrollTable = ({ setPayrollId }) => {
                     </CTableRow>
                   </CTableHead>
                   <CTableBody>
-                    <PayrollRow payrolls={payrolls} setPayrollId={setPayrollId} />
+                    <TaskRow
+                      tasks={tasks}
+                      taskId={taskId}
+                      setTaskId={setTaskId}
+                      taskData={taskData}
+                      setTaskData={setTaskData}
+                      completed={completed}
+                      setCompleted={setCompleted}
+                    />
                   </CTableBody>
                 </CTable>
               </CCardBody>
@@ -96,14 +99,22 @@ const PayrollTable = ({ setPayrollId }) => {
   )
 }
 
-PayrollTable.propTypes = {
+TaskTable.propTypes = {
   tasks: PropTypes.any,
-  setPayrollId: PropTypes.any,
-  payrollData: PropTypes.any,
-  setPayrollData: PropTypes.any,
+  taskId: PropTypes.any,
+  setTaskId: PropTypes.any,
+  taskData: PropTypes.any,
+  setTaskData: PropTypes.any,
+  completed: PropTypes.any,
+  setCompleted: PropTypes.any,
 }
-PayrollRow.propTypes = {
-  payrolls: PropTypes.any,
-  setPayrollId: PropTypes.any,
+TaskRow.propTypes = {
+  tasks: PropTypes.any,
+  taskId: PropTypes.any,
+  setTaskId: PropTypes.any,
+  taskData: PropTypes.any,
+  setTaskData: PropTypes.any,
+  completed: PropTypes.any,
+  setCompleted: PropTypes.any,
 }
-export default PayrollTable
+export default TaskTable

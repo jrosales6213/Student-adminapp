@@ -13,16 +13,12 @@ import {
   CModalHeader,
   CModalTitle,
   CModalBody,
-  CWidgetStatsC,
-  CLink,
   CListGroup,
   CListGroupItem,
   CFormSelect,
 } from '@coreui/react'
 import { createBudget, updateBudget } from 'src/redux/actions/budgets.js'
-import { cilArrowRight, cilChartPie, cilOptions } from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
-// import EventTable from './EventTable'
+
 import PayrollForm from './PayrollForm'
 
 const BudgetForm = ({ budgetId, setBudgetId, budgets, payrollId, setPayrollId }) => {

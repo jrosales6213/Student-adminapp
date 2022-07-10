@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateTask, createTask } from '../redux/actions/tasks.js'
-
+import { updateTask, createTask } from 'src/redux/actions/tasks.js'
 // import FileBase from 'react-file-base64';
 
 import {
@@ -16,17 +15,18 @@ import {
   CInputGroup,
 } from '@coreui/react'
 import TaskTable from './TaskTable'
-// import StudentTable from './StudentTable'
 
 const TaskForm = ({ taskId, setTaskId }) => {
   const [taskData, setTaskData] = useState({
     task: PropTypes.string,
     expectedby: PropTypes.any,
   })
+
+  const dispatch = useDispatch()
+
   const newTask = useSelector((state) =>
     taskId ? state.tasks.find((task) => task._id === taskId) : null,
   )
-  const dispatch = useDispatch()
 
   useEffect(() => {
     if (newTask) setTaskData(newTask)
@@ -76,9 +76,6 @@ const TaskForm = ({ taskId, setTaskId }) => {
                   onChange={(e) => setTaskData({ ...taskData, expectedby: e.target.value })}
                   required
                 />
-
-                {/* <DatePicker /> */}
-
                 <CButton type="submit" color="primary" id="button-addon2">
                   +
                 </CButton>

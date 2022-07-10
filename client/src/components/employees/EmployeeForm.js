@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { getEmployees, createEmployee, updateEmployee } from '../redux/actions/employees'
+import { createEmployee, updateEmployee } from 'src/redux/actions/employees'
 // import FileBase from 'react-file-base64';
 import {
   CButton,
@@ -9,13 +9,10 @@ import {
   CModalHeader,
   CModalTitle,
   CModalBody,
-  CModalFooter,
   CCol,
   CForm,
   CFormInput,
-  CFormFeedback,
   CFormLabel,
-  CFormSelect,
   CRow,
 } from '@coreui/react'
 import EmployeeTable from './EmployeeTable'
@@ -33,10 +30,6 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
   )
 
   const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(getEmployees())
-  // }, [employeeId, dispatch])
 
   useEffect(() => {
     if (newEmployee) setEmployeeInput(newEmployee)
