@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deleteTask } from 'src/redux/actions/tasks'
-// import FileBase from 'react-file-base64';
+
 import {
   CCol,
   CRow,
@@ -19,6 +19,7 @@ import {
 
 import CIcon from '@coreui/icons-react'
 import { cilCheck, cilTrash } from '@coreui/icons'
+
 function TaskRow({ tasks, setTaskId }) {
   const dispatch = useDispatch()
 
@@ -57,9 +58,7 @@ function TaskRow({ tasks, setTaskId }) {
   )
 }
 
-const TaskTable = ({ taskId, setTaskId, taskData, setTaskData }) => {
-  const [completed, setCompleted] = useState(true)
-  const tasks = useSelector((state) => state.tasks)
+const TaskTable = ({ taskId, setTaskId, taskData, setTaskData, tasks }) => {
   return (
     <>
       <CRow className="mt-4">
@@ -85,8 +84,6 @@ const TaskTable = ({ taskId, setTaskId, taskData, setTaskData }) => {
                       setTaskId={setTaskId}
                       taskData={taskData}
                       setTaskData={setTaskData}
-                      completed={completed}
-                      setCompleted={setCompleted}
                     />
                   </CTableBody>
                 </CTable>
@@ -105,8 +102,6 @@ TaskTable.propTypes = {
   setTaskId: PropTypes.any,
   taskData: PropTypes.any,
   setTaskData: PropTypes.any,
-  completed: PropTypes.any,
-  setCompleted: PropTypes.any,
 }
 TaskRow.propTypes = {
   tasks: PropTypes.any,
@@ -114,7 +109,5 @@ TaskRow.propTypes = {
   setTaskId: PropTypes.any,
   taskData: PropTypes.any,
   setTaskData: PropTypes.any,
-  completed: PropTypes.any,
-  setCompleted: PropTypes.any,
 }
 export default TaskTable

@@ -12,15 +12,18 @@ import {
   CCardBody,
   CCardHeader,
   CInputGroup,
+  CFormSelect,
 } from '@coreui/react'
 
 import PayrollTable from './PayrollTable'
+import PayPeriods from './PayPeriods'
 
 const PayrollForm = ({ payrollId, setPayrollId }) => {
   const [payrollData, setPayrollData] = useState({
     pay_period: PropTypes.string,
     amount: PropTypes.any,
   })
+
   const newPayroll = useSelector((state) =>
     payrollId ? state.payrolls.find((payroll) => payroll._id === payrollId) : null,
   )
@@ -50,6 +53,10 @@ const PayrollForm = ({ payrollId, setPayrollId }) => {
       console.log('EventId already exists')
     }
   }
+  const payrolls = useSelector((state) => state.payrolls)
+  const DefaultLayOut = () => {
+    return <h3 className="text-center text-secondary m-4">No Payroll added</h3>
+  }
   return (
     <>
       <CCard className="mt-4">
@@ -58,14 +65,17 @@ const PayrollForm = ({ payrollId, setPayrollId }) => {
           <CRow>
             <CForm onSubmit={handleSubmit}>
               <CInputGroup className="mb-3">
-                <CFormInput
-                  placeholder="Pay-Period"
-                  type="text"
-                  id="payroll"
+                <CFormSelect
+                  id="payperiod"
                   value={payrollData.pay_period}
                   onChange={(e) => setPayrollData({ ...payrollData, pay_period: e.target.value })}
-                  required
-                />
+                >
+                  {PayPeriods.map((period) => (
+                    <option value={period} key={period}>
+                      {period}
+                    </option>
+                  ))}
+                </CFormSelect>
 
                 <CFormInput
                   placeholder="Amount"
@@ -84,7 +94,11 @@ const PayrollForm = ({ payrollId, setPayrollId }) => {
           </CRow>
         </CCardBody>
       </CCard>
-      <PayrollTable setPayrollId={setPayrollId} />
+      {payrolls.length === 0 ? (
+        <DefaultLayOut />
+      ) : (
+        <PayrollTable setPayrollId={setPayrollId} payrolls={payrolls} />
+      )}
     </>
   )
 }
@@ -95,6 +109,7 @@ PayrollForm.propTypes = {
 }
 PayrollTable.prototype = {
   setPayrollId: PropTypes.any,
+  payrolls: PropTypes.any,
 }
 
 export default PayrollForm

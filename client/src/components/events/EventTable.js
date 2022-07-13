@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deleteEvent } from 'src/redux/actions/events'
 // import FileBase from 'react-file-base64';
 import {
@@ -58,9 +58,7 @@ function EventRow({ events, setEventId }) {
   )
 }
 
-const EventTable = ({ eventId, setEventId, eventData, setEventData }) => {
-  const events = useSelector((state) => state.events)
-
+const EventTable = ({ eventId, setEventId, eventData, setEventData, events }) => {
   return (
     <>
       <CRow className="mt-4">

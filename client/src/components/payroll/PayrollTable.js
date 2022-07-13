@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deletePayroll } from 'src/redux/actions/payrolls'
-// import FileBase from 'react-file-base64';
+
 import {
   CCol,
   CRow,
@@ -55,8 +55,7 @@ function PayrollRow({ payrolls, setPayrollId }) {
   )
 }
 
-const PayrollTable = ({ setPayrollId }) => {
-  const payrolls = useSelector((state) => state.payrolls)
+const PayrollTable = ({ setPayrollId, payrolls }) => {
   return (
     <>
       <CRow className="mt-4">
@@ -70,8 +69,8 @@ const PayrollTable = ({ setPayrollId }) => {
                 <CTable hover responsive>
                   <CTableHead>
                     <CTableRow>
-                      <CTableHeaderCell scope="col">Task</CTableHeaderCell>
-                      <CTableHeaderCell scope="col">Due By</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Period</CTableHeaderCell>
+                      <CTableHeaderCell scope="col">Amount Paid</CTableHeaderCell>
                       <CTableHeaderCell scope="col">Status</CTableHeaderCell>
                     </CTableRow>
                   </CTableHead>
@@ -89,7 +88,7 @@ const PayrollTable = ({ setPayrollId }) => {
 }
 
 PayrollTable.propTypes = {
-  tasks: PropTypes.any,
+  payrolls: PropTypes.any,
   setPayrollId: PropTypes.any,
   payrollData: PropTypes.any,
   setPayrollData: PropTypes.any,

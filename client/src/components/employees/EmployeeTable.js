@@ -17,12 +17,10 @@ import './Employee.css'
 
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilTrash } from '@coreui/icons'
-import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { deleteEmployee } from 'src/redux/actions/employees'
-// import DeleteModal from './DeleteModal'
 
-function EmployeeRow({ employee, setEmployeeId, setVisible, visible }) {
+function EmployeeRow({ employees, setEmployeeId, setVisible, visible }) {
   const dispatch = useDispatch()
 
   function handleEdit(item) {
@@ -31,7 +29,7 @@ function EmployeeRow({ employee, setEmployeeId, setVisible, visible }) {
   }
   return (
     <>
-      {employee.map((employee) => (
+      {employees.map((employee) => (
         <CTableRow key={employee._id}>
           <CTableDataCell>{employee.firstname}</CTableDataCell>
           <CTableDataCell>{employee.lastname}</CTableDataCell>
@@ -68,8 +66,8 @@ const EmployeeTable = ({
   setEmployeeInput,
   setVisible,
   visible,
+  employees,
 }) => {
-  const employees = useSelector((state) => state.employees)
   return (
     <CRow>
       <CCol>
@@ -90,7 +88,7 @@ const EmployeeTable = ({
                 </CTableHead>
                 <CTableBody>
                   <EmployeeRow
-                    employee={employees}
+                    employees={employees}
                     employeeId={employeeId}
                     setEmployeeId={setEmployeeId}
                     employeeInput={employeeInput}
@@ -109,7 +107,7 @@ const EmployeeTable = ({
 }
 
 EmployeeTable.propTypes = {
-  employee: PropTypes.any,
+  employees: PropTypes.any,
   setEmployeeId: PropTypes.any,
   employeeId: PropTypes.any,
   employeeInput: PropTypes.any,
@@ -118,7 +116,7 @@ EmployeeTable.propTypes = {
   visible: PropTypes.any,
 }
 EmployeeRow.propTypes = {
-  employee: PropTypes.any,
+  employees: PropTypes.any,
   setEmployeeId: PropTypes.any,
   employeeId: PropTypes.any,
   employeeInput: PropTypes.any,

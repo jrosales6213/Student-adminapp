@@ -13,7 +13,7 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import './StudentTable.css'
+import './student.css'
 
 import CIcon from '@coreui/icons-react'
 import { cilPencil, cilTrash } from '@coreui/icons'
@@ -68,8 +68,6 @@ const StudentTable = ({
   visible,
   students,
 }) => {
-  // const students = useSelector((state) => state.students)
-
   return (
     <CRow>
       <CCol>

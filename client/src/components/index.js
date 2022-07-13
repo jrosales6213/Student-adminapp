@@ -1,25 +1,19 @@
-import AppBreadcrumb from './AppBreadcrumb'
-import AppContent from './AppContent'
-import AppFooter from './AppFooter'
-import AppHeader from './AppHeader'
-// import AppHeaderDropdown from './header/AppHeaderDropdown'
-import AppSidebar from './AppSidebar'
-import DocsCallout from './DocsCallout'
-import DocsLink from './DocsLink'
-import DocsExample from './DocsExample'
-// import StudentForm from './StudentForm'
-// import PartnerForm from './PartnersForm'
+import React from 'react'
+import { AppContent, AppSidebar, AppFooter, AppHeader } from './exports'
 
-export {
-  AppBreadcrumb,
-  AppContent,
-  AppFooter,
-  AppHeader,
-  // AppHeaderDropdown,
-  AppSidebar,
-  DocsCallout,
-  DocsLink,
-  DocsExample,
-  // StudentForm,
-  // PartnerForm,
+const MainLayout = () => {
+  return (
+    <div>
+      <AppSidebar />
+      <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+        <AppHeader />
+        <div className="body flex-grow-1 px-3">
+          <AppContent />
+        </div>
+        <AppFooter />
+      </div>
+    </div>
+  )
 }
+
+export default MainLayout

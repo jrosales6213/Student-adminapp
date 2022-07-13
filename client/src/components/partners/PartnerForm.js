@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPartner, updatePartner } from 'src/redux/actions/partners'
-// import FileBase from 'react-file-base64';
+
 import {
   CButton,
   CModal,
@@ -69,6 +69,12 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
     }
   }
 
+  const partners = useSelector((state) => state.partners)
+
+  const DefaultLayOut = () => {
+    return <h3 className="text-center text-secondary m-4">No Partners added</h3>
+  }
+
   return (
     <>
       <CRow>
@@ -78,12 +84,12 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
           </CButton>
           <CModal visible={visible} onClose={() => setVisible(false)}>
             <CModalHeader>
-              <CModalTitle>Modal title</CModalTitle>
+              <CModalTitle>Partner Information</CModalTitle>
             </CModalHeader>
             <CModalBody>
               <CForm className="row g-3" onSubmit={handleSubmit}>
                 <CCol md={12}>
-                  <CFormLabel htmlFor="company">Partner Information</CFormLabel>
+                  <CFormLabel htmlFor="company">Company Name</CFormLabel>
                   <CFormInput
                     type="text"
                     id="company"
@@ -169,14 +175,19 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
       </CRow>
       <CRow>
         <CCol>
-          <PartnerTable
-            setPartnerId={setPartnerId}
-            partnerId={partnerId}
-            partnerData={partnerData}
-            setPartnerData={setPartnerData}
-            setVisible={setVisible}
-            visible={visible}
-          />
+          {partners.length === 0 ? (
+            <DefaultLayOut />
+          ) : (
+            <PartnerTable
+              setPartnerId={setPartnerId}
+              partnerId={partnerId}
+              partnerData={partnerData}
+              setPartnerData={setPartnerData}
+              setVisible={setVisible}
+              visible={visible}
+              partners={partners}
+            />
+          )}
         </CCol>
       </CRow>
     </>
@@ -186,6 +197,7 @@ const PartnerForm = ({ partnerId, setPartnerId }) => {
 PartnerForm.propTypes = {
   setPartnerId: PropTypes.any,
   partnerId: PropTypes.any,
+  partners: PropTypes.any,
 }
 
 export default PartnerForm

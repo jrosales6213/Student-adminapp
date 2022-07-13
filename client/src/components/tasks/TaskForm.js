@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateTask, createTask } from 'src/redux/actions/tasks.js'
-// import FileBase from 'react-file-base64';
 
 import {
   CButton,
@@ -52,6 +51,13 @@ const TaskForm = ({ taskId, setTaskId }) => {
       console.log('CurrentId already exists')
     }
   }
+
+  const tasks = useSelector((state) => state.tasks)
+
+  const DefaultLayOut = () => {
+    return <h3 className="text-center text-secondary m-4">No Tasks added</h3>
+  }
+
   return (
     <>
       <CCard>
@@ -84,12 +90,17 @@ const TaskForm = ({ taskId, setTaskId }) => {
           </CRow>
         </CCardBody>
       </CCard>
-      <TaskTable
-        taskData={taskId}
-        setTaskData={setTaskData}
-        taskId={taskId}
-        setTaskId={setTaskId}
-      />
+      {tasks.length === 0 ? (
+        <DefaultLayOut />
+      ) : (
+        <TaskTable
+          taskData={taskId}
+          setTaskData={setTaskData}
+          taskId={taskId}
+          setTaskId={setTaskId}
+          tasks={tasks}
+        />
+      )}
     </>
   )
 }
@@ -103,6 +114,7 @@ TaskTable.prototype = {
   taskId: PropTypes.any,
   taskData: PropTypes.any,
   setTaskData: PropTypes.any,
+  tasks: PropTypes.any,
 }
 
 export default TaskForm

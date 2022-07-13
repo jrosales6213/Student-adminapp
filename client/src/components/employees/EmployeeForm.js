@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { createEmployee, updateEmployee } from 'src/redux/actions/employees'
-// import FileBase from 'react-file-base64';
+
 import {
   CButton,
   CModal,
@@ -24,6 +24,8 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
     lastname: PropTypes.string,
     title: PropTypes.string,
   })
+
+  const employees = useSelector((state) => state.employees)
 
   const newEmployee = useSelector((state) =>
     employeeId ? state.employees.find((employee) => employee._id === employeeId) : null,
@@ -57,6 +59,10 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
       setVisible(!visible)
       console.log('EmployeeId already exists')
     }
+  }
+
+  const DefaultLayOut = () => {
+    return <h3 className="text-center text-secondary m-4">No Employees added</h3>
   }
 
   return (
@@ -119,14 +125,19 @@ const EmployeeForm = ({ employeeId, setEmployeeId }) => {
       </CRow>
       <CRow>
         <CCol>
-          <EmployeeTable
-            setEmployeeId={setEmployeeId}
-            employeeId={employeeId}
-            employeeInput={employeeInput}
-            setEmployeeInput={setEmployeeInput}
-            setVisible={setVisible}
-            visible={visible}
-          />
+          {employees.length === 0 ? (
+            <DefaultLayOut />
+          ) : (
+            <EmployeeTable
+              setEmployeeId={setEmployeeId}
+              employeeId={employeeId}
+              employeeInput={employeeInput}
+              setEmployeeInput={setEmployeeInput}
+              setVisible={setVisible}
+              visible={visible}
+              employees={employees}
+            />
+          )}
         </CCol>
       </CRow>
     </>
@@ -144,5 +155,6 @@ EmployeeTable.propTypes = {
   setEmployeeInput: PropTypes.any,
   setVisible: PropTypes.any,
   visible: PropTypes.any,
+  employees: PropTypes.any,
 }
 export default EmployeeForm

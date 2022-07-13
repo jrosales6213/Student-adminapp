@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { createStudent, updateStudent } from 'src/redux/actions/students'
-// import FileBase from 'react-file-base64';
+
 import {
   CButton,
   CModal,
@@ -72,26 +72,10 @@ const StudentForm = ({ currentId, setCurrentId }) => {
       console.log('CurrentId already exists')
     }
   }
+
   const DefaultLayOut = () => {
     return <h3 className="text-center text-secondary m-4">No students added</h3>
   }
-
-  // const TestingL = () => {
-  //   if (students) {
-  //     return (
-  //       <StudentTable
-  //         setCurrentId={setCurrentId}
-  //         currentId={currentId}
-  //         postData={postData}
-  //         setPostData={setPostData}
-  //         setVisible={setVisible}
-  //         visible={visible}
-  //         students={students}
-  //       />
-  //     )
-  //   }
-  //   return { DefaultLayOut }
-  // }
 
   return (
     <>

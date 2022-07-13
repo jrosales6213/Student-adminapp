@@ -65,22 +65,31 @@ const BudgetForm = ({ budgetId, setBudgetId, budgets, payrollId, setPayrollId })
     style: 'currency',
     currency: 'USD',
   })
+
+  const DefaultLayOut = () => {
+    return <h3 className=" text-secondary m-4">No Budget set</h3>
+  }
   return (
     <>
       <CRow>
         <CCol xs={4}>
-          <CListGroup>
-            {budgets.map((budget) => (
-              <CListGroupItem key={budget._id}>
-                {dollarUS.format(budget.amount) + ' received for the '}
-                {budget.title}
-              </CListGroupItem>
-            ))}
-          </CListGroup>
+          {budgets.length === 0 ? (
+            <DefaultLayOut />
+          ) : (
+            <CListGroup>
+              {budgets.map((budget) => (
+                <CListGroupItem key={budget._id}>
+                  {dollarUS.format(budget.amount) + ' received for the '}
+                  {budget.title}
+                </CListGroupItem>
+              ))}
+            </CListGroup>
+          )}
 
           <CButton className="m-2" onClick={() => setVisible(!visible)}>
             New Budget
           </CButton>
+
           <CModal visible={visible} onClose={() => setVisible(false)}>
             <CModalHeader>
               <CModalTitle>Set Budget</CModalTitle>

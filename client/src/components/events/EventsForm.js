@@ -49,6 +49,12 @@ const EventForm = ({ eventId, setEventId }) => {
       console.log('EventId already exists')
     }
   }
+
+  const events = useSelector((state) => state.events)
+
+  const DefaultLayOut = () => {
+    return <h3 className="text-center text-secondary m-4">No Events added</h3>
+  }
   return (
     <>
       <CCard>
@@ -82,12 +88,18 @@ const EventForm = ({ eventId, setEventId }) => {
           </CRow>
         </CCardBody>
       </CCard>
-      <EventTable
-        eventData={eventData}
-        setEventData={setEventData}
-        eventId={eventId}
-        setEventId={setEventId}
-      />
+
+      {events.length === 0 ? (
+        <DefaultLayOut />
+      ) : (
+        <EventTable
+          eventData={eventData}
+          setEventData={setEventData}
+          eventId={eventId}
+          setEventId={setEventId}
+          events={events}
+        />
+      )}
     </>
   )
 }
@@ -101,6 +113,7 @@ EventTable.prototype = {
   eventId: PropTypes.any,
   eventData: PropTypes.any,
   setEventData: PropTypes.any,
+  events: PropTypes.any,
 }
 
 export default EventForm
