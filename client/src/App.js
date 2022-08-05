@@ -1,8 +1,10 @@
 import React, { Component, Suspense } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
-import MainLayout from './components/index'
 
 import './scss/style.scss'
+const MainLayout = React.lazy(() => import('./components/index'))
+const Login = React.lazy(() => import('./views/pages/login/Login'))
+const Register = React.lazy(() => import('./views/pages/register/Register'))
 
 const loading = (
   <div className="pt-3 text-center">
@@ -16,7 +18,9 @@ class App extends Component {
       <HashRouter>
         <Suspense fallback={loading}>
           <Routes>
-            <Route path="*" name="Home" element={<MainLayout />} />{' '}
+            <Route exact path="/login" name="Login Page" element={<Login />} />
+            <Route exact path="/register" name="Register Page" element={<Register />} />
+            <Route path="*" name="Home" element={<MainLayout />} />
           </Routes>
         </Suspense>
       </HashRouter>

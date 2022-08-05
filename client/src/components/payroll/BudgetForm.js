@@ -18,7 +18,6 @@ import {
   CFormSelect,
 } from '@coreui/react'
 import { createBudget, updateBudget } from 'src/redux/actions/budgets.js'
-
 import PayrollForm from './PayrollForm'
 
 const BudgetForm = ({ budgetId, setBudgetId, budgets, payrollId, setPayrollId }) => {

@@ -54,6 +54,7 @@ const PayrollForm = ({ payrollId, setPayrollId }) => {
     }
   }
   const payrolls = useSelector((state) => state.payrolls)
+
   const DefaultLayOut = () => {
     return <h3 className="text-center text-secondary m-4">No Payroll added</h3>
   }
